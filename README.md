@@ -1,152 +1,201 @@
-<img src="src/assets/img/icon-128.png" width="64"/>
+![Chrome Extension Webpack](https://user-images.githubusercontent.com/21238816/147307879-a3cb179e-3368-412a-88db-284474183884.png)
+Get started with Chrome extensions development using webpack, TypeScript, Sass, and more.
 
-# Type Genius
-
-A GPT-powered Chrome extension built with React 18 and Webpack 5 that autocompletes your whole world
-
-[![npm](https://img.shields.io/npm/v/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
-[![npm-download](https://img.shields.io/npm/dw/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
-[![npm](https://img.shields.io/npm/dm/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/sszczep)
 
 ## Announcements
 
-- Recently updated from **[React](https://reactjs.org)** ~~17~~ to **18**!
-- **_This boilerplate adopts [Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-overview/)!_**
-  - For V2 users, please check out the [manifest-v2](https://github.com/lxieyang/chrome-extension-boilerplate-react/tree/manifest-v2) branch, or use version [3.x](https://www.npmjs.com/package/chrome-extension-boilerplate-react/v/3.3.0).
-  - Check out the [Manifest V3 Migration Guide](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/).
-- Recently added [devtools](https://developer.chrome.com/docs/extensions/mv3/devtools/) Support! Thanks [GeekaholicLin](https://github.com/lxieyang/chrome-extension-boilerplate-react/issues/17)!
-- Recently updated from **[Webpack Dev Server](https://webpack.js.org/configuration/dev-server/)** ~~3.x~~ to **4.x** and **[Webpack](https://webpack.js.org/)** ~~4~~ to **5**!
-- Recently added [TypeScript](https://www.typescriptlang.org/) Support!
+*Nothing to see here yet.*
 
 ## Features
 
-This is a basic Chrome Extensions boilerplate to help you write modular and modern Javascript code, load CSS easily and [automatic reload the browser on code changes](https://webpack.github.io/docs/webpack-dev-server.html#automatic-refresh).
+Chrome Extension Webpack is a simple boilerplate for fast extension development. It helps writing modern TypeScript code with SCSS support. 
+It is meant to be lightweight and scalable, hence easily adaptable to your needs.
 
-This boilerplate is updated with:
-
-- [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-overview/)
-- [React 18](https://reactjs.org)
-- [Webpack 5](https://webpack.js.org/)
-- [Webpack Dev Server 4](https://webpack.js.org/configuration/dev-server/)
-- [React Refresh](https://www.npmjs.com/package/react-refresh)
-- [react-refresh-webpack-plugin](https://github.com/pmmmwh/react-refresh-webpack-plugin)
-- [eslint-config-react-app](https://www.npmjs.com/package/eslint-config-react-app)
+It features:
+- [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/)
+- [Webpack 5](https://webpack.js.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Sass](https://sass-lang.com)
+- [Babel](https://babeljs.io/)
+- [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-- [TypeScript](https://www.typescriptlang.org/)
 
-This boilerplate is heavily inspired by and adapted from [https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate](https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate), with additional support for React 18 features, Webpack 5, and Webpack Dev Server 4.
+If you need React support, please check this awesome boilerplate created by [Michael Xieyang Liu](https://github.com/lxieyang): [chrome-extension-boilerplate-react](https://github.com/lxieyang/chrome-extension-boilerplate-react).
 
-Please open up an issue to nudge me to keep the npm packages up-to-date. FYI, it takes time to make different packages with different versions work together nicely.
+## Getting started
 
-## Installing and Running
+### Installing and running
 
-### Procedures:
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm run start` for development mode, `npm run build` for production build
+4. Add the extension to Chrome:
+    1. Go to `chrome://extensions/`
+    2. Enable the `Developer mode`
+    3. Click on `Load unpacked`
+    4. Choose the `dist` directory
+5. You are good to go! You can also pin the extension to the toolbar for easy access.
 
-1. Check if your [Node.js](https://nodejs.org/) version is >= **18**.
-2. Clone this repository.
-3. Change the package's `name`, `description`, and `repository` fields in `package.json`.
-4. Change the name of your extension on `src/manifest.json`.
-5. Run `npm install` to install the dependencies.
-6. Run `npm start`
-7. Load your extension on Chrome following:
-   1. Access `chrome://extensions/`
-   2. Check `Developer mode`
-   3. Click on `Load unpacked extension`
-   4. Select the `build` folder.
-8. Happy hacking.
+### Project structure
 
-## Structure
+All TypeScript files are placed in `src` directory. There are few files already prepared for you:
+- `contentScript.ts` - the [content script](https://developer.chrome.com/docs/extensions/mv3/content_scripts/) to be run in the context of selected web pages
+- `serviceWorker.ts` - the [background script](https://developer.chrome.com/docs/extensions/mv3/service_workers/) usually used to initialize the extension and monitor events
+- `storage.ts` - little helper utility to easily manage the extension's [storage](https://developer.chrome.com/docs/extensions/reference/storage/). In this particular project we are using *synced* storage area
+- `popup.ts` and `options.ts` - per-page scripts
 
-All your extension's code must be placed in the `src` folder.
+Style files are placed in `styles` directory. There you can find per-page stylesheets and `common.scss` with stylings common across the pages.
+We also use [Normalize.css](https://necolas.github.io/normalize.css/) so your extensions look good and consistent wherever they are installed.
 
-The boilerplate is already prepared to have a popup, an options page, a background page, and a new tab page (which replaces the new tab page of your browser). But feel free to customize these.
+`static` directory includes all the files to be copied over to the final build. It consists of `manifest.json` defining our extension, `.html` pages and icon set.
 
-## TypeScript
+### Pages
 
-This boilerplate now supports TypeScript! The `Options` Page is implemented using TypeScript. Please refer to `src/pages/Options/` for example usages.
+Currently, there are two pages: `popup.html` and `options.html`, which can be found in `static` directory. Both have corresponding script and style files at `src` and `styles` directories accordingly.
 
-## Webpack auto-reload and HRM
+#### Popup
 
-To make your workflow much more efficient this boilerplate uses the [webpack server](https://webpack.github.io/docs/webpack-dev-server.html) to development (started with `npm start`) with auto reload feature that reloads the browser automatically every time that you save some file in your editor.
+It's a default extension's page, visible after clicking on extension's icon in toolbar. According to the documentation:
+> The popup cannot be smaller than 25x25 and cannot be larger than 800x600.
 
-You can run the dev mode on other port if you want. Just specify the env var `port` like this:
+Read more [here](https://developer.chrome.com/docs/extensions/reference/browserAction/#popup).
 
+#### Options
+
+Options page shown by right-clicking the extension icon in the toolbar and selecting *Options*.
+
+There are two available types of options pages: `full page` and `embedded`. By default it is set to `full page`. You can change that behaviour in the `manifest.json`:
+
+```javascript
+"open_in_tab": true // For `full page`
+"open_in_tab": false // For `embedded`
 ```
-$ PORT=6002 npm run start
+
+Read more [here](https://developer.chrome.com/docs/extensions/mv3/options/).
+
+### Storage
+
+I have prepared a bunch of helper functions to simplify storage usage:
+
+```typescript
+function getStorageData(): Promise<Storage> {...}
+
+// Example usage
+const storageData = await getStorageData();
+console.log(storageData);
 ```
 
-## Content Scripts
+```typescript
+function setStorageData(data: Storage): Promise<void> {...}
 
-Although this boilerplate uses the webpack dev server, it's also prepared to write all your bundles files on the disk at every code change, so you can point, on your extension manifest, to your bundles that you want to use as [content scripts](https://developer.chrome.com/extensions/content_scripts), but you need to exclude these entry points from hot reloading [(why?)](https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate/issues/4#issuecomment-261788690). To do so you need to expose which entry points are content scripts on the `webpack.config.js` using the `chromeExtensionBoilerplate -> notHotReload` config. Look the example below.
+// Example usage
+const newStorageData = { visible: true };
+await setStorageData(newStorageData);
+```
 
-Let's say that you want use the `myContentScript` entry point as content script, so on your `webpack.config.js` you will configure the entry point and exclude it from hot reloading, like this:
+```typescript
+function getStorageItem<Key extends keyof Storage>(
+  key: Key,
+): Promise<Storage[Key]> {...}
 
-```js
-{
-  …
-  entry: {
-    myContentScript: "./src/js/myContentScript.js"
-  },
-  chromeExtensionBoilerplate: {
-    notHotReload: ["myContentScript"]
-  }
-  …
+// Example usage
+const isVisible = await getStorageItem('visible');
+console.log(isVisible);
+```
+
+```typescript
+function setStorageItem<Key extends keyof Storage>(
+  key: Key,
+  value: Storage[Key],
+): Promise<void> {...}
+
+// Example usage
+await setStorageItem('visible', true);
+```
+
+```typescript
+async function initializeStorageWithDefaults(defaults: Storage) {...}
+
+// If `visible` property is already set in the storage, it won't be replaced.
+// This function might be used in `onInstalled` event in service worker
+// to set default storage values on extension's initialization.
+const defaultStorageData = { visible: false };
+await initializeStorageWithDefaults(defaultStorageData);
+```
+
+All of the above functions use `Storage` interface which guarantees type safety. In the above use-case scenario, it could be declared as:
+
+```typescript
+interface Storage {
+  visible: boolean;
 }
 ```
 
-and on your `src/manifest.json`:
+**IMPORTANT!** Don't forget to change the interface according to your needs.
 
-```json
-{
-  "content_scripts": [
-    {
-      "matches": ["https://www.google.com/*"],
-      "js": ["myContentScript.bundle.js"]
-    }
-  ]
-}
+*Check `src/storage.ts` for implementation details.*
+
+### Content scripts
+
+Content scripts are files that run in the context of web pages. They live in an isolated world (private execution environment), so they do not conflict with the page or other extensions' content sripts.
+
+The content script can be *declared statically* or *programmatically injected*.
+
+#### Static declaration (match patterns)
+
+Statically declared scripts are registered in the manifest file under the `"content_scripts"` field. They all must specify corresponding [match patterns](https://developer.chrome.com/docs/extensions/mv3/match_patterns/). In this boilerplate, the content script will be injected under all URLs by default. You can change that behaviour in `manifest.json` file. 
+
+You can edit the default content script at `src/contentScript.ts`.
+
+#### Programmatic injection
+
+You can also inject the scripts programmatically. It might come in handy when you want to inject the script only in response to certain events. You also need to set extra permissions in manifest file. Read more about programmatic injection [here](https://developer.chrome.com/docs/extensions/mv3/content_scripts/#programmatic).
+
+#### Adding new content script
+
+To add a new content script, create a new script file in `src` directory. You also need to create a new entry in the *webpack* config file - `webpack.common.js`:
+
+```javascript
+entry: {
+  serviceWorker: './src/serviceWorker.ts',
+  contentScript: './src/contentScript.ts',
+  popup: './src/popup.ts',
+  options: './src/options.ts',
+
+  // New entry down here
+  myNewContentScript: './src/myNewContentScript.ts',
+},
 ```
 
-## Intelligent Code Completion
+In case of static declaration, you might also need to modify the manifest file.
 
-Thanks to [@hudidit](https://github.com/lxieyang/chrome-extension-boilerplate-react/issues/4)'s kind suggestions, this boilerplate supports chrome-specific intelligent code completion using [@types/chrome](https://www.npmjs.com/package/@types/chrome).
+### Service worker (*old background pages*)
 
-## Packing
+*If you are coming from Manifest V2, you might want to read this page first: [Migrating from background pages to service workers](https://developer.chrome.com/docs/extensions/mv3/migrating_to_service_workers/).*
 
-After the development of your extension run the command
+As per docs:
 
-```
-$ NODE_ENV=production npm run build
-```
+> Extensions are event-based programs used to modify or enhance the Chrome browsing experience. Events are browser triggers, such as navigating to a new page, removing a bookmark, or closing a tab. Extensions monitor these events using scripts in their background service worker, which then react with specified instructions.
 
-Now, the content of `build` folder will be the extension ready to be submitted to the Chrome Web Store. Just take a look at the [official guide](https://developer.chrome.com/webstore/publish) to more infos about publishing.
+The most common event you will listen to is `chrome.runtime.onInstalled`:
 
-## Secrets
-
-If you are developing an extension that talks with some API you probably are using different keys for testing and production. Is a good practice you not commit your secret keys and expose to anyone that have access to the repository.
-
-To this task this boilerplate import the file `./secrets.<THE-NODE_ENV>.js` on your modules through the module named as `secrets`, so you can do things like this:
-
-_./secrets.development.js_
-
-```js
-export default { key: '123' };
+```typescript
+chrome.runtime.onInstalled.addListener(async () => {
+  // Here goes everything you want to execute after extension initialization
+  console.log('Extension successfully installed!');
+});
 ```
 
-_./src/popup.js_
+It is also the perfect (**and the only**) place to create a [context menu](https://developer.chrome.com/docs/extensions/reference/contextMenus/).
 
-```js
-import secrets from 'secrets';
-ApiCall({ key: secrets.key });
-```
+You can edit the service worker at `src/serviceWorker.ts`.
 
-:point_right: The files with name `secrets.*.js` already are ignored on the repository.
+Read more about service workers [here](https://developer.chrome.com/docs/extensions/mv3/service_workers/).
 
-## Resources:
+## More resources
 
-- [Webpack documentation](https://webpack.js.org/concepts/)
-- [Chrome Extension documentation](https://developer.chrome.com/extensions/getstarted)
-
----
-
-Michael Xieyang Liu | [Website](https://lxieyang.github.io)
+- [Welcome to Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/)
+- [webpack documentation](https://webpack.js.org/concepts/)
+- [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [Sass Basics](https://sass-lang.com/guide)
