@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-boilerplate-react",
-  "version": "5.0.4",
-  "description": "A chrome extension boilerplate built with React 18, Webpack 5, and Webpack Dev Server 4",
+  "name": "Type Genius",
+  "version": "0.0.1",
+  "description": "A GPT-powered Chrome extension that autocompletes your whole world.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lxieyang/chrome-extension-boilerplate-react.git"
+    "url": "https://github.com/bkny-labs/type-genius"
   },
   "scripts": {
     "build": "node utils/build.js",
