@@ -1,0 +1,28 @@
+{
+  "description": "A GPT-powered Chrome extension that autocompletes your whole world.",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "name": "Type Genius Lean",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon-34.png"
+  },
+  "icons": {
+    "128": "icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "<all_urls>"
+      ],
+      "js": [
+        "content-script.js"
+      ],
+      "css": [
+        "content.styles.css"
+      ]
+    }
+  ]
+}
