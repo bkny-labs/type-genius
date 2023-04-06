@@ -1,5 +1,5 @@
 {
-  "name": "Type Genius",
+  "name": "type-genius",
   "version": "0.0.1",
   "description": "A GPT-powered Chrome extension that autocompletes your whole world",
   "scripts": {
