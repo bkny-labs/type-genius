@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-webpack",
-  "version": "0.2.0",
-  "description": "Get started with Chrome extensions development using webpack, Typescript, Sass, and more",
+  "name": "Type Genius",
+  "version": "0.0.1",
+  "description": "A GPT-powered Chrome extension that autocompletes your whole world",
   "scripts": {
     "start": "webpack --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
@@ -30,6 +30,7 @@
     "prettier": "^2.7.1",
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2",
+    "tailwindcss": "^3.3.1",
     "typescript": "^4.7.4",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
