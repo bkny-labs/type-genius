@@ -1,19 +1,8 @@
 # Type Genius - A GPT-powered Chrome Extension
 
-[![OpenAI](https://img.shields.io/badge/OpenAI-%2300A0E4?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/) [![Node.js](https://img.shields.io/badge/Node.js-%23339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![npm](https://img.shields.io/badge/npm-%23CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/) [![Netlify](https://img.shields.io/badge/Netlify-%2300C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-%2300A0E4?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/) [![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![Node.js](https://img.shields.io/badge/Node.js-%23339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/) [![npm](https://img.shields.io/badge/npm-%23CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/) [![Netlify](https://img.shields.io/badge/Netlify-%2300C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
 
 Welcome to **Type Genius** - an AI-powered autocomplete Chrome extension that revolutionizes the way you interact with the web. Type Genius brings the power of GPT to your fingertips, making your browsing experience smarter, faster, and more efficient.
-
-## Table of Contents
-
-1. [Introduction](https://chat.openai.com/chat?model=gpt-4#introduction)
-2. [Features](https://chat.openai.com/chat?model=gpt-4#features)
-3. [Installation](https://chat.openai.com/chat?model=gpt-4#installation)
-4. [Usage](https://chat.openai.com/chat?model=gpt-4#usage)
-5. [FAQ](https://chat.openai.com/chat?model=gpt-4#faq)
-6. [Contributing](https://chat.openai.com/chat?model=gpt-4#contributing)
-7. [Credits](https://chat.openai.com/chat?model=gpt-4#credits)
-8. [License](https://chat.openai.com/chat?model=gpt-4#license)
 
 ## Introduction
 
@@ -29,7 +18,7 @@ Type Genius is powered by GPT, a state-of-the-art natural language processing AI
 
 ## Installation
 
-1. Visit the[Chrome Web Store](https://chrome.google.com/webstore/detail/type-genius/your-extension-id).
+1. Visit the [Chrome Web Store](https://chrome.google.com/webstore/detail/type-genius/your-extension-id).
 2. Click on the**Add to Chrome** button.
 3. In the pop-up window, click**Add extension** to confirm the installation.
 4. Type Genius will now appear as an icon in your browser's toolbar.
