@@ -61,7 +61,7 @@ $input-text-active: #BFD2FF;
   border-radius: 2px;
   padding: 1rem 1.4rem 1.1rem;
   background: $input-background;
-  input { border-style: none; background: transparent; outline: none; }
+  input, textarea { border-style: none; background: transparent; outline: none; }
   &:after {
     content: "";
     position: absolute;
@@ -79,7 +79,7 @@ $input-text-active: #BFD2FF;
   }
 }
 
-.webflow-style-input input {
+.webflow-style-input input, .webflow-style-input textarea {
   flex-grow: 1;
   color: $input-text-active;
   font-size: 1.2rem;

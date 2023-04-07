@@ -65,3 +65,31 @@ textarea.addEventListener('keydown', function (event) {
         tabUsedForSuggestion = false;
     }
 });
+
+
+// form.ts
+function saveOptions(): void {
+    console.log("SAVE OPTIONS");
+    const form = document.getElementById('optionsForm') as HTMLFormElement;
+    const options = {
+      model: (form.elements.namedItem('model') as HTMLSelectElement).value,
+      max_tokens: parseInt((form.elements.namedItem('max_tokens') as HTMLInputElement).value, 10),
+      temperature: parseFloat((form.elements.namedItem('temperature') as HTMLInputElement).value),
+      top_p: parseFloat((form.elements.namedItem('top_p') as HTMLInputElement).value),
+      n: parseInt((form.elements.namedItem('n') as HTMLInputElement).value, 10),
+      stream: (form.elements.namedItem('stream') as HTMLInputElement).checked,
+      stop: (form.elements.namedItem('stop') as HTMLInputElement).value,
+      prompt: (form.elements.namedItem('prompt') as HTMLTextAreaElement).value,
+    };
+  
+    localStorage.setItem('options', JSON.stringify(options));
+    alert('Options saved to localStorage.');
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const saveButton = document.getElementById('saveButton') as HTMLButtonElement;
+    saveButton.addEventListener('click', saveOptions);
+  });
+  
+  export { saveOptions };
+  

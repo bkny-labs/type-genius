@@ -16,11 +16,65 @@
   <div class="container">
     <img width="300px" src="/images/logo.png" alt="Type Genius Logo">
     <p>Configure your Type Genius settings here.</p>
-    <div class="webflow-style-input">
-      <input class="" type="email" placeholder="Enter your OpenAI API Key"></input>
-    </div>
+    <form id="optionsForm">
+      <div class="webflow-style-input">
+        <input class="" type="email" placeholder="Enter your OpenAI API Key"></input>
+      </div>
 
-    <button class="save-button">Save</button>
+      <label for="model">Model:</label>
+      <select id="model" name="model" required>
+        <option value="text-davinci-003">text-davinci-003</option>
+        <option value="text-davinci-002" selected>text-davinci-002</option>
+        <option value="text-curie-001">text-curie-001</option>
+        <option value="text-babbage-001">text-babbage-001</option>
+        <option value="text-ada-001">text-ada-001</option>
+        <option value="davinci">davinci</option>
+        <option value="curie">curie</option>
+        <option value="babbage">babbage</option>
+        <option value="ada">ada</option>
+      </select>
+
+
+      
+  
+      <div class="webflow-style-input">
+        <label for="max_tokens">Max Tokens</label>
+        <input type="number" placeholder="Max tokens" id="max_tokens" name="max_tokens" value="10" required>
+      </div>
+
+      <div class="webflow-style-input">
+        <input type="number" placeholder="Temperature" id="temperature" name="temperature" step="0.1" value="0.5" required>
+      </div>
+
+      <div class="webflow-style-input">
+        <input type="number" placeholder="Top P" id="top_p" name="top_p" step="0.1" value="0.5" required>
+      </div>
+
+      <div class="webflow-style-input">
+        <input type="number" placeholder="N" id="n" name="n" value="1" required>
+      </div>
+
+      <div class="float-right">
+        <input type="checkbox" placeholder="Stream" id="stream" name="stream">
+        <label class="label-inline" for="stream">Stream?</label>
+      </div>
+
+
+      
+
+      <div class="webflow-style-input">
+        <input type="text" placeholder="Stop" id="stop" name="stop" value="\n" required>
+      </div>
+
+      <div class="webflow-style-input">
+        <textarea id="prompt" placeholder="Prompt" name="prompt" rows="4" cols="50" required></textarea>
+      </div>
+
+      
+
+      <button class="save-button" type="button" onclick="saveOptions()">Save</button>
+  
+    </form>
   </div>
   <script src="options.js"></script>
 </body>
