@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
   await initializeStorageWithDefaults({});
 
-  console.log('Extension successfully installed!');
+  console.log('Type Genius was successfully installed!');
 });
 
 // Log storage changes, might be safely removed

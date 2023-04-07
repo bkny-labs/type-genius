@@ -40,3 +40,28 @@ textarea.addEventListener('input', function () {
         suggestionText.textContent = '';
     }
 });
+
+function getSuggestedValue(): string {
+    const words = textarea.value.split(' ');
+    const lastWord = words.slice(-1)[0] || '';
+    const suggestion = getSuggestion(lastWord);
+    return suggestion ? textarea.value.substring(0, textarea.selectionStart) + suggestion.substring(lastWord.length) : '';
+}
+
+let tabUsedForSuggestion = false;
+
+textarea.addEventListener('keydown', function (event) {
+    if (event.key === 'Tab') {
+        const suggestedValue = getSuggestedValue();
+        if (suggestedValue && !tabUsedForSuggestion) {
+            event.preventDefault(); // Prevent default behavior (moving focus to the next input element)
+            textarea.value = suggestedValue;
+            textarea.dispatchEvent(new Event('input')); // Trigger the input event to update the suggestion
+            tabUsedForSuggestion = true;
+        } else {
+            tabUsedForSuggestion = false;
+        }
+    } else {
+        tabUsedForSuggestion = false;
+    }
+});
