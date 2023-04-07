@@ -48,6 +48,8 @@ class TypeGenius {
   }
   
   loadRequest(field: string, payload: string) {
+    this.hideHint();
+
     return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
       method: 'POST',
       headers: {
@@ -58,12 +60,12 @@ class TypeGenius {
     .then(response => response.json())
     .then(data => {
       const response: string = data.response;
-      if (response.startsWith('Error') === false) {
-        this.currentHint = data.response;
-        this.showHint(data.response);
-      } else {
+      if (response.startsWith('Error')) {
         this.currentHint = '';
         this.hideHint();
+      } else {
+        this.currentHint = data.response;
+        this.showHint(data.response);
       }
     })
     .catch(error => console.error(error));
