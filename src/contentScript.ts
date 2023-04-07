@@ -3,7 +3,7 @@ import '../styles/contentScript.scss';
 import { debounce } from 'lodash';
 
 class TypeGenius {
-  private debouncedRequestLoader: (text: string) => void;
+  private debouncedRequestLoader: (field: string, text: string) => void;
   private handleKeyUp: (event: KeyboardEvent) => void;
   private hintContainer: HTMLDivElement;
   private currentHint = '';
@@ -22,9 +22,7 @@ class TypeGenius {
       } else {
         // Check if the activeElement is an input or textarea element
         if (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA") {
-          console.log(activeElement.value);
-          // this.loadRequest(activeElement.value);
-          this.debouncedRequestLoader(activeElement.value);
+          this.debouncedRequestLoader(activeElement.name, activeElement.value);
         }
       }
     }
@@ -49,20 +47,23 @@ class TypeGenius {
     this.addListeners();
   }
   
-  loadRequest(payload: string) {
-    console.log('Load', payload);
-
+  loadRequest(field: string, payload: string) {
     return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ payload })
+      body: JSON.stringify({ field, payload })
     })
     .then(response => response.json())
     .then(data => {
-      this.currentHint = data.response;
-      this.showHint(data.response);
+      const response: string = data.response;
+      if (response.startsWith('Error') === false) {
+        this.currentHint = data.response;
+        this.showHint(data.response);
+      } else {
+        this.currentHint = '';
+      }
     })
     .catch(error => console.error(error));
   }
