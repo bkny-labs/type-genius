@@ -15,7 +15,7 @@ const enableTypeGenius = (enabled: boolean) => {
   });
 }
 
-enableCheckbox.addEventListener('change', (e) => {
+enableCheckbox.addEventListener('change', () => {
   enableTypeGenius(enableCheckbox.checked);
   setStorageItem('enabled', enableCheckbox.checked);
 });
