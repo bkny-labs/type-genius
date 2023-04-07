@@ -2,6 +2,26 @@ import '../styles/contentScript.scss';
 
 import { debounce } from 'lodash';
 
+const blacklistFields = [
+  'name',
+  'firstName',
+  'lastName',
+  'email',
+  'phone',
+  'phoneNumber',
+  'user',
+  'username',
+  'password',
+  'address',
+  'address1',
+  'address2',
+  'county',
+  'country',
+  'state',
+  'zip',
+  'province'
+];
+
 class TypeGenius {
   private debouncedRequestLoader: (field: string, text: string) => void;
   private handleKeyUp: (event: KeyboardEvent) => void;
@@ -20,14 +40,18 @@ class TypeGenius {
         // TODO: Handle tab
         this.applyHint();
       } else {
+        console.log(activeElement.type);
         // Check if the activeElement is an input or textarea element
-        if (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA") {
-          this.debouncedRequestLoader(activeElement.name, activeElement.value);
+        if ((activeElement.tagName === 'INPUT' && activeElement.type === 'text') || activeElement.tagName === 'TEXTAREA') {
+          // Check blacklist
+          if (blacklistFields.find((element) => element.toLowerCase() === activeElement.name.toLowerCase()) === undefined) {
+            this.debouncedRequestLoader(activeElement.name, activeElement.value);
+          }
         }
       }
     }
 
-    document.addEventListener("keyup", this.handleKeyUp);
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   applyHint() {
@@ -38,7 +62,7 @@ class TypeGenius {
   }
 
   dispose() {
-    document.removeEventListener("keyup", this.handleKeyUp);
+    document.removeEventListener('keyup', this.handleKeyUp);
     document.body.removeChild(this.hintContainer);
   }
 
@@ -47,7 +71,7 @@ class TypeGenius {
   }
 
   init() {
-    this.hintContainer = document.createElement("div");
+    this.hintContainer = document.createElement('div');
     document.body.appendChild(this.hintContainer);
     this.hintContainer.className = 'type-genius-hint';
     this.hintContainer.style.display = 'none';
