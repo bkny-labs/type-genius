@@ -1,10 +1,81 @@
-console.log('collab broskizzzzz? 4');
+import '../styles/contentScript.scss';
 
-// Add a keyup event listener to the document to log the value of the currently focused input or textarea
-document.addEventListener("keyup", () => {
-    const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
-    // Check if the activeElement is an input or textarea element
-    if (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA") {
-    console.log(activeElement.value);
+import { debounce } from 'lodash';
+
+class TypeGenius {
+  private debouncedRequestLoader: (text: string) => void;
+  private handleKeyUp: (event: KeyboardEvent) => void;
+  private hintContainer: HTMLDivElement;
+  private currentHint = '';
+  
+  addListeners() {
+    this.debouncedRequestLoader = debounce(this.loadRequest.bind(this), 1000);
+    // Define the event listener code as a separate function
+    this.handleKeyUp = (event: KeyboardEvent) => {
+      const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
+      console.log('handleKeyUp', event);
+      if (event.key === 'Escape') {
+        this.hideHint();
+      } else if (event.key === 'ArrowRight') {
+        // TODO: Handle tab
+        activeElement.value += this.currentHint;
+      } else {
+        // Check if the activeElement is an input or textarea element
+        if (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA") {
+          console.log(activeElement.value);
+          // this.loadRequest(activeElement.value);
+          this.debouncedRequestLoader(activeElement.value);
+        }
+      }
     }
-});
+
+    document.addEventListener("keyup", this.handleKeyUp);
+  }
+
+  dispose() {
+    document.removeEventListener("keyup", this.handleKeyUp);
+    document.body.removeChild(this.hintContainer);
+  }
+
+  hideHint() {
+    this.hintContainer.style.display = 'none';
+  }
+
+  init() {
+    this.hintContainer = document.createElement("div");
+    document.body.appendChild(this.hintContainer);
+    this.hintContainer.className = 'type-genius-hint';
+    this.hintContainer.style.display = 'none';
+    this.addListeners();
+  }
+  
+  loadRequest(payload: string) {
+    console.log('Load', payload);
+
+    return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ payload })
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.currentHint = data.response;
+      this.showHint(data.response);
+    })
+    .catch(error => console.error(error));
+  }
+
+  showHint(text: string) {
+    const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
+    const boundingBox = activeElement.getBoundingClientRect();
+    this.hintContainer.style.display = 'block';
+    this.hintContainer.style.top = `${boundingBox.bottom}px`;
+    this.hintContainer.style.left = `${boundingBox.left}px`;
+    this.hintContainer.innerText = text;
+  }
+}
+
+const typeGenius = new TypeGenius();
+typeGenius.init();
