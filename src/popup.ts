@@ -10,7 +10,7 @@ const enableCheckbox = document.getElementById('toggle') as HTMLInputElement;
 const enableTypeGenius = (enabled: boolean) => {
   chrome.tabs.query({}, tabs => {
     tabs.forEach(tab => {
-      chrome.tabs.sendMessage(tab.id, { enabled });
+      chrome.tabs.sendMessage(tab.id, { typeGeniusEnabled: enabled });
     });
   });
 }

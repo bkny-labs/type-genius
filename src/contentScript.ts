@@ -129,5 +129,5 @@ class TypeGenius {
 const typeGenius = new TypeGenius();
 
 chrome.runtime.onMessage.addListener(message => {
-  typeGenius.setEnabled(message.enabled);
+  typeGenius.setEnabled(message.typeGeniusEnabled);
 });
