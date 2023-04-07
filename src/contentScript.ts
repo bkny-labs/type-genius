@@ -7,7 +7,7 @@ class TypeGenius {
   private handleKeyUp: (event: KeyboardEvent) => void;
   private hintContainer: HTMLDivElement;
   private currentHint = '';
-  
+
   addListeners() {
     this.debouncedRequestLoader = debounce(this.loadRequest.bind(this), 1000);
     // Define the event listener code as a separate function
@@ -67,6 +67,7 @@ class TypeGenius {
     .then(response => response.json())
     .then(data => {
       const response: string = data.response;
+      console.log(response);
       if (response.startsWith('Error')) {
         this.currentHint = '';
         this.hideHint();
