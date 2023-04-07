@@ -176,7 +176,7 @@ $input-text-active: #BFD2FF;
   background-color: transparent;
 }
 
-.suggestion-text {
+.suggestion-text, .type-genius-hint {
   position: absolute;
   top: 0;
   left: 0;
@@ -189,6 +189,7 @@ $input-text-active: #BFD2FF;
   overflow-wrap: break-word;
   color: #999;
   pointer-events: none;
+  background: #000;
 }
 
 .hidden-text {
@@ -198,4 +199,12 @@ $input-text-active: #BFD2FF;
   font-size: 14px;
   line-height: 1.4;
   font-family: 'Consolas', monospace;
+}
+
+fieldset {
+  width: 500px;
+}
+
+input {
+  color: #fff;
 }
