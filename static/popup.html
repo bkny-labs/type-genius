@@ -8,12 +8,31 @@
 </head>
 
 <body>
+  <div class="header">
+    <div>
+      <p>Signed in as Mike, <a href="#">Logout</a></p>
+    </div>
+    <div>
+    </div>
+  </div>
   <div class="container">
-    <h1>Type Genius is enabled.</h1>
+    <img width="60%" src="/images/logo.png" alt="Type Genius Logo">
 
     <p>Start typing in any input on the page to begin seeing suggestions...</p>
 
-    <button id="go-to-options" class="button" style="margin-top: 2rem;">Edit Options</button>
+    <div class="wrapper">
+      <input type="radio" name="select" id="option-1" checked>
+      <input type="radio" name="select" id="option-2">
+        <label for="option-1" class="option option-1">
+          <div class="dot"></div>
+           <span>On</span>
+           </label>
+        <label for="option-2" class="option option-2">
+          <div class="dot"></div>
+           <span>Off</span>
+        </label>
+     </div>
+     <a id="go-to-options" href="#">Edit Settings</a>
   </div>
 
   <script src="popup.js"></script>

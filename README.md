@@ -33,23 +33,15 @@ Type Genius is powered by GPT, a state-of-the-art natural language processing AI
 
 ## FAQ
 
-**Q: Is Type Genius safe and secure to use?**
-
-A: Absolutely! Type Genius prioritizes your privacy and security. All processing occurs on your local device, which means your data never leaves your browser.
-
 **Q: Can I use Type Genius on other browsers?**
 
 A: Currently, Type Genius is only available for Google Chrome. However, we're actively working on expanding to other popular browsers.
 
 ## Contributing
 
-We welcome and appreciate contributions to improve Type Genius! Please read our [contributing guidelines](https://github.com/your-github-username/type-genius/blob/main/CONTRIBUTING.md) for details on how to contribute.
-
-## Credits
-
-Type Genius is developed and maintained by [Your Name](https://github.com/your-github-username). Special thanks to [OpenAI](https://openai.com/) for their groundbreaking work on GPT.
+COMING SOON!
 
 ## License
 
-Type Genius is released under the [MIT License](https://github.com/your-github-username/type-genius/blob/main/LICENSE).
+Type Genius will be released under the [MIT License](https://github.com/your-github-username/type-genius/blob/main/LICENSE).
 

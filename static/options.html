@@ -9,10 +9,18 @@
 </head>
 
 <body>
+  <div class="alert alert--success">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    OpenAI API Status: Connected
+  </div>
   <div class="container">
-    <h1>Options page</h1>
-    
-    <p>Edit <u>static/options.html</u> to change this page!</p>
+    <img width="300px" src="/images/logo.png" alt="Type Genius Logo">
+    <p>Configure your Type Genius settings here.</p>
+    <div class="webflow-style-input">
+      <input class="" type="email" placeholder="Enter your OpenAI API Key"></input>
+    </div>
+
+    <button class="save-button">Save</button>
   </div>
   
   <script src="options.js"></script>

@@ -1,7 +1,7 @@
 @import 'common.scss';
 
 .container {
-  min-height: 100vh;
+  min-height: 75vh;
 
   display: flex;
 
@@ -9,4 +9,134 @@
 
   align-items: center;
   justify-content: center;
+}
+h1 {
+  font-size: 50px;
+  margin: 0;
+}
+
+p {
+  font-size: 18px;
+}
+
+.save-button {
+  display: inline-block;
+  outline: 0;
+  margin-top: 15px;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 26px;
+  padding: 8px 25px;
+  text-shadow: rgb(0 0 0 / 25%) 0px 3px 8px;
+  background: linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%);
+  transition: all 0.5s ease 0s;
+  :hover{
+      box-shadow: rgb(80 63 205 / 50%) 0px 1px 40px;
+      transition: all 0.1s ease 0s;
+  }
+  
+}
+
+// colors
+$input-background: rgba(57, 63, 84, 0.8);
+$input-text-inactive: #7881A1;
+$input-text-active: #BFD2FF;
+
+// gradient animation
+@keyframes gradient { 
+  0%{background-position:0 0}
+  100%{background-position:100% 0}
+}
+
+.webflow-style-input {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 1rem 1.4rem 1.1rem;
+  background: $input-background;
+  input { border-style: none; background: transparent; outline: none; }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    height: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-position: 0% 0%;
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+    animation: gradient 3s linear infinite;
+  }
+}
+
+.webflow-style-input input {
+  flex-grow: 1;
+  color: $input-text-active;
+  font-size: 1.2rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  &::-webkit-input-placeholder {
+    color: $input-text-inactive;
+  }
+}
+
+.webflow-style-input button {
+  color:  $input-text-inactive;
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  transition: color .25s;
+  &:hover {
+    color: $input-text-active;
+  }
+}
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  color: white;
+  margin-bottom: 15px;
+  &--success {
+    background-color: #4caf50; /* Green */
+  }
+  
+  &--warning {
+    background-color: #ff9800; /* Orange */
+  }
+  
+  &--info {
+    background-color: #2196f3; /* Blue */
+  }
+  
+  &--error {
+    background-color: #f44336; /* Red */
+  }
+  
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
 }
