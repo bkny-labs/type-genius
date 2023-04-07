@@ -1,0 +1,23 @@
+{
+  "name": "text-genius-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidkim9/stonkfinder-proxy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidkim9/stonkfinder-proxy/issues"
+  },
+  "homepage": "https://github.com/davidkim9/stonkfinder-proxy#readme",
+  "dependencies": {
+    "chatgpt": "^5.2.2"
+  }
+}
