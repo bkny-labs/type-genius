@@ -1,11 +1,38 @@
-email <input name="email" placeholder="email" type="text"/>
-<br>
-name <input name="name" placeholder="name" type="text"/>
-<br>
-gender <input name="gender" placeholder="gender" type="text"/>
-<br>
-phone <input name="phone" placeholder="phone" type="text"/>
-<br>
-ethnicity <input name="ethnicity" placeholder="ethnicity" type="text"/>
-<br>
-<textarea name="story"></textarea>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Form</h1>
+        <form>
+            <fieldset>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email">
+
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Name">
+
+                <label for="gender">Gender</label>
+                <input type="text" name="gender" id="gender" placeholder="Gender">
+
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" id="phone" placeholder="Phone">
+
+                <label for="ethnicity">Ethnicity</label>
+                <input type="text" name="ethnicity" id="ethnicity" placeholder="Ethnicity">
+
+                <label for="story">Story</label>
+                <textarea name="story" id="story"></textarea>
+
+                <input class="button-primary" type="submit" value="Submit">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
