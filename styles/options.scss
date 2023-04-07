@@ -142,7 +142,36 @@ $input-text-active: #BFD2FF;
 }
 
 
+fieldset {
+  width: 500px;
+}
 
+input {
+  color: #fff;
+}
+
+label {
+  color: #a7a7a7;
+  display: block;
+  margin-top: 4px;
+  &.label-inline {
+    display: inline-block;
+  }
+}
+
+input[type="checkbox"] {
+  margin: 10px 5px;
+}
+
+select {
+  background: #403b61;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  display: inline-block;
+  margin: 8px 0;
+  font-size: 18px;
+}
 
 //
 
@@ -201,14 +230,3 @@ $input-text-active: #BFD2FF;
   font-family: 'Consolas', monospace;
 }
 
-fieldset {
-  width: 500px;
-}
-
-input {
-  color: #fff;
-}
-
-label {
-  color: #a7a7a7;
-}
