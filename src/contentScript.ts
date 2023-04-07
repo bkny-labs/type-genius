@@ -13,12 +13,12 @@ class TypeGenius {
     // Define the event listener code as a separate function
     this.handleKeyUp = (event: KeyboardEvent) => {
       const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
-      console.log('handleKeyUp', event);
+      // console.log('handleKeyUp', event);
       if (event.key === 'Escape') {
         this.hideHint();
       } else if (event.key === 'ArrowRight') {
         // TODO: Handle tab
-        activeElement.value += this.currentHint;
+        this.applyHint();
       } else {
         // Check if the activeElement is an input or textarea element
         if (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA") {
@@ -28,6 +28,13 @@ class TypeGenius {
     }
 
     document.addEventListener("keyup", this.handleKeyUp);
+  }
+
+  applyHint() {
+    const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
+    activeElement.value += this.currentHint;
+    this.currentHint = '';
+    this.hideHint();
   }
 
   dispose() {
