@@ -1,4 +1,6 @@
-<img width="420px" style="display: block; margin: 0 auto;" src="static/images/logo.png">
+<p align="center">
+  <img width="420px" src="static/images/logo.png">
+</p>
 
 # Type Genius - A GPT-powered Chrome Extension
 
