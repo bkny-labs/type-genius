@@ -17,10 +17,10 @@ const enableTypeGenius = (enabled: boolean) => {
 
 enableCheckbox.addEventListener('change', () => {
   enableTypeGenius(enableCheckbox.checked);
-  setStorageItem('enabled', enableCheckbox.checked);
+  setStorageItem('typeGeniusEnabled', enableCheckbox.checked);
 });
 
-getStorageItem('enabled').then((value) => {
+getStorageItem('typeGeniusEnabled').then((value) => {
   enableCheckbox.checked = value;
   enableTypeGenius(value);
 });

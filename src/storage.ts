@@ -1,6 +1,7 @@
 // Define your storage data here
 export interface Storage {
-  enabled: boolean;
+  openaiApiKey: string;
+  typeGeniusEnabled: boolean;
 } // eslint-disable-line
 
 export function getStorageData(): Promise<Storage> {

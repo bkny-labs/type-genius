@@ -1,6 +1,7 @@
 import '../styles/contentScript.scss';
 
 import { debounce } from 'lodash';
+import { getStorageItem } from './storage';
 
 const blacklistFields = [
   'name',
@@ -23,11 +24,12 @@ const blacklistFields = [
 ];
 
 class TypeGenius {
+  private apiKey: string = null;
+  private currentHint = '';
   private debouncedRequestLoader: (field: string, text: string) => void;
+  private enabled = false;
   private handleKeyUp: (event: KeyboardEvent) => void;
   private hintContainer: HTMLDivElement;
-  private currentHint = '';
-  private enabled = false;
 
   addListeners() {
     this.debouncedRequestLoader = debounce(this.loadRequest.bind(this), 1000);
@@ -36,6 +38,7 @@ class TypeGenius {
       const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
       // console.log('handleKeyUp', event);
       if (event.key === 'Escape') {
+        this.currentHint = '';
         this.hideHint();
       } else if (event.key === 'ArrowRight') {
         // TODO: Handle tab
@@ -46,6 +49,8 @@ class TypeGenius {
         if ((activeElement.tagName === 'INPUT' && activeElement.type === 'text') || activeElement.tagName === 'TEXTAREA') {
           // Check blacklist
           if (blacklistFields.find((element) => element.toLowerCase() === activeElement.name.toLowerCase()) === undefined) {
+            this.currentHint = '';
+            this.hideHint();
             this.debouncedRequestLoader(activeElement.name, activeElement.value);
           }
         }
@@ -80,29 +85,61 @@ class TypeGenius {
     this.addListeners();
   }
   
-  loadRequest(field: string, payload: string) {
-    this.hideHint();
+  // loadRequest(field: string, payload: string) {
+  //   return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ field, payload })
+  //   })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     const response: string = data.response;
+  //     console.log(response);
+  //     if (response.startsWith('Error')) {
+  //       this.currentHint = '';
+  //       this.hideHint();
+  //     } else {
+  //       this.currentHint = data.response;
+  //       this.showHint(data.response);
+  //     }
+  //   })
+  //   .catch(error => console.error(error));
+  // }
 
-    return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
+  loadRequest(field: string, payload: string) {
+    if (this.apiKey === null) {
+      throw new Error('API Key is required');
+    }
+    const options = {
+      "model": "text-davinci-002",
+      "max_tokens": 10,
+      "temperature": 0.5,
+      "top_p": 0.5,
+      "n": 1,
+      "stream": false,
+      "stop": "\n",
+      "prompt": payload
+    };
+    return fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.apiKey}`
       },
-      body: JSON.stringify({ field, payload })
+      body: JSON.stringify(options)
     })
     .then(response => response.json())
     .then(data => {
-      const response: string = data.response;
-      console.log(response);
-      if (response.startsWith('Error')) {
-        this.currentHint = '';
-        this.hideHint();
-      } else {
-        this.currentHint = data.response;
-        this.showHint(data.response);
-      }
+      this.currentHint = data.choices[0].text;
+      this.showHint();
     })
     .catch(error => console.error(error));
+  }
+
+  setApiKey(apiKey: string) {
+    this.apiKey = apiKey;
   }
 
   setEnabled(enabled: boolean) {
@@ -116,13 +153,13 @@ class TypeGenius {
     }
   }
 
-  showHint(text: string) {
+  showHint() {
     const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
     const boundingBox = activeElement.getBoundingClientRect();
     this.hintContainer.style.display = 'block';
     this.hintContainer.style.top = `${boundingBox.bottom}px`;
     this.hintContainer.style.left = `${boundingBox.left}px`;
-    this.hintContainer.innerText = text;
+    this.hintContainer.innerText = this.currentHint;
   }
 }
 
@@ -130,4 +167,12 @@ const typeGenius = new TypeGenius();
 
 chrome.runtime.onMessage.addListener(message => {
   typeGenius.setEnabled(message.typeGeniusEnabled);
+});
+
+getStorageItem('typeGeniusEnabled').then((value) => {
+  typeGenius.setEnabled(value);
+});
+
+getStorageItem('openaiApiKey').then((value) => {
+  typeGenius.setApiKey(value);
 });
