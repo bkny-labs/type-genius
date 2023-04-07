@@ -1,7 +1,7 @@
 import '../styles/contentScript.scss';
 
 import { debounce } from 'lodash';
-import { getStorageItem } from './storage';
+import { getStorageData, getStorageItem } from './storage';
 
 const blacklistFields = [
   'name',
@@ -165,8 +165,11 @@ class TypeGenius {
 
 const typeGenius = new TypeGenius();
 
-chrome.runtime.onMessage.addListener(message => {
-  typeGenius.setEnabled(message.typeGeniusEnabled);
+chrome.runtime.onMessage.addListener(() => {
+  getStorageData().then(data => {
+    typeGenius.setEnabled(data.typeGeniusEnabled);
+    typeGenius.setApiKey(data.openaiApiKey);
+  });
 });
 
 getStorageItem('typeGeniusEnabled').then((value) => {

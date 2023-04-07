@@ -7,20 +7,19 @@ document.getElementById('go-to-options').addEventListener('click', () => {
 
 const enableCheckbox = document.getElementById('toggle') as HTMLInputElement;
 
-const enableTypeGenius = (enabled: boolean) => {
+const refreshData = () => {
   chrome.tabs.query({}, tabs => {
     tabs.forEach(tab => {
-      chrome.tabs.sendMessage(tab.id, { typeGeniusEnabled: enabled });
+      chrome.tabs.sendMessage(tab.id, {});
     });
   });
 }
 
 enableCheckbox.addEventListener('change', () => {
-  enableTypeGenius(enableCheckbox.checked);
   setStorageItem('typeGeniusEnabled', enableCheckbox.checked);
+  refreshData();
 });
 
 getStorageItem('typeGeniusEnabled').then((value) => {
   enableCheckbox.checked = value;
-  enableTypeGenius(value);
 });
