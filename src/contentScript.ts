@@ -63,6 +63,7 @@ class TypeGenius {
         this.showHint(data.response);
       } else {
         this.currentHint = '';
+        this.hideHint();
       }
     })
     .catch(error => console.error(error));
