@@ -140,3 +140,62 @@ $input-text-active: #BFD2FF;
 .closebtn:hover {
   color: black;
 }
+
+
+
+
+//
+
+.autocomplete-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.suggestion-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.custom-textarea {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Consolas', monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  resize: none;
+  outline: none;
+  border: 1px solid #ccc;
+  color: #fff;
+  background-color: transparent;
+}
+
+.suggestion-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Consolas', monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  color: #999;
+  pointer-events: none;
+}
+
+.hidden-text {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Consolas', monospace;
+}
