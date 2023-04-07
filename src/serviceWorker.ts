@@ -3,7 +3,9 @@ import { initializeStorageWithDefaults } from './storage';
 chrome.runtime.onInstalled.addListener(async () => {
   // Here goes everything you want to execute after extension initialization
 
-  await initializeStorageWithDefaults({});
+  await initializeStorageWithDefaults({
+    enabled: true
+  });
 
   console.log('Type Genius was successfully installed!');
 });

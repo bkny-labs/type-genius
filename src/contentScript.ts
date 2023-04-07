@@ -27,6 +27,7 @@ class TypeGenius {
   private handleKeyUp: (event: KeyboardEvent) => void;
   private hintContainer: HTMLDivElement;
   private currentHint = '';
+  private enabled = false;
 
   addListeners() {
     this.debouncedRequestLoader = debounce(this.loadRequest.bind(this), 1000);
@@ -64,6 +65,7 @@ class TypeGenius {
   dispose() {
     document.removeEventListener('keyup', this.handleKeyUp);
     document.body.removeChild(this.hintContainer);
+    this.hintContainer = null;
   }
 
   hideHint() {
@@ -103,6 +105,17 @@ class TypeGenius {
     .catch(error => console.error(error));
   }
 
+  setEnabled(enabled: boolean) {
+    if (this.enabled !== enabled) {
+      this.enabled = enabled;
+      if (enabled === true) {
+        this.init();
+      } else {
+        this.dispose();
+      }
+    }
+  }
+
   showHint(text: string) {
     const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
     const boundingBox = activeElement.getBoundingClientRect();
@@ -114,4 +127,7 @@ class TypeGenius {
 }
 
 const typeGenius = new TypeGenius();
-typeGenius.init();
+
+chrome.runtime.onMessage.addListener(message => {
+  typeGenius.setEnabled(message.enabled);
+});
