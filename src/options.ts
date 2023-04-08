@@ -23,10 +23,8 @@ function saveOptions(): void {
       n: parseInt((form.elements.namedItem('n') as HTMLInputElement).value, 10),
       stream: (form.elements.namedItem('stream') as HTMLInputElement).checked,
       stop: (form.elements.namedItem('stop') as HTMLInputElement).value,
-      prompt: (form.elements.namedItem('prompt') as HTMLTextAreaElement).value,
     };
-  
-    // localStorage.setItem('options', JSON.stringify(options));
+
     setStorageItem('options', options);
     setStorageItem('apiKey', (form.elements.namedItem('apiKey') as HTMLSelectElement).value);
     console.log('Options saved to localStorage.');

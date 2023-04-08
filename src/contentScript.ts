@@ -106,6 +106,8 @@ class TypeGenius {
       "prompt": payload,
       ...this.options
     };
+    console.log('options', options);
+    console.log('options', this.options);
     return fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -181,21 +183,15 @@ class TypeGenius {
 
 const typeGenius = new TypeGenius();
 
-chrome.runtime.onMessage.addListener(() => {
-  getStorageData().then(data => {
-    console.log('refresh', data);
-    typeGenius.setEnabled(data.typeGeniusEnabled);
+
+const loadStorage = () => getStorageData().then(data => {
+  console.log('refresh', data);
+  typeGenius.setEnabled(data.typeGeniusEnabled);
+  typeGenius.setOptions(data.options);
+  if (data.apiKey) {
     typeGenius.setApiKey(data.apiKey);
-    typeGenius.setOptions(data.options);
-  });
-});
-
-getStorageItem('typeGeniusEnabled').then((value) => {
-  typeGenius.setEnabled(value);
-});
-
-getStorageItem('apiKey').then((value) => {
-  if (value) {
-    typeGenius.setApiKey(value);
   }
 });
+
+chrome.runtime.onMessage.addListener(() => loadStorage());
+loadStorage();
