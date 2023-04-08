@@ -129,7 +129,7 @@ class TypeGenius {
       payload,
       ...this.options
     };
-    return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
+    return fetch('https://storied-arithmetic-ac0ce0.netlify.app/.netlify/functions/gpt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
