@@ -14,7 +14,9 @@ const loadStorage = () => getStorageData().then(data => {
   (form.elements.namedItem('top_p') as HTMLInputElement).value = options.top_p + '';
   (form.elements.namedItem('n') as HTMLInputElement).value = options.n + '';
   (form.elements.namedItem('stream') as HTMLInputElement).checked = options.stream;
-  (form.elements.namedItem('stop') as HTMLInputElement).value = options.stop;
+
+  const stopValue = options.stop.replace(/\n/g, "\\n");
+  (form.elements.namedItem('stop') as HTMLInputElement).value = stopValue;
 });
 
 window.addEventListener('load', () => {
@@ -29,6 +31,10 @@ window.addEventListener('load', () => {
 
 function saveOptions(): void {
     const form = document.getElementById('optionsForm') as HTMLFormElement;
+
+    let stopValue = (form.elements.namedItem('stop') as HTMLInputElement).value;
+    stopValue = stopValue.replace(/\\n/g, "\n");
+
     const options: Options = {
       model: (form.elements.namedItem('model') as HTMLSelectElement).value,
       max_tokens: parseInt((form.elements.namedItem('max_tokens') as HTMLInputElement).value, 10),
@@ -36,7 +42,7 @@ function saveOptions(): void {
       top_p: parseFloat((form.elements.namedItem('top_p') as HTMLInputElement).value),
       n: parseInt((form.elements.namedItem('n') as HTMLInputElement).value, 10),
       stream: (form.elements.namedItem('stream') as HTMLInputElement).checked,
-      stop: (form.elements.namedItem('stop') as HTMLInputElement).value,
+      stop: stopValue,
     };
 
     setStorageItem('options', options);

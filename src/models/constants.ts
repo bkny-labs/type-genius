@@ -1,0 +1,19 @@
+export const blacklistFields = [
+  'name',
+  'firstName',
+  'lastName',
+  'email',
+  'phone',
+  'phoneNumber',
+  'user',
+  'username',
+  'password',
+  'address',
+  'address1',
+  'address2',
+  'county',
+  'country',
+  'state',
+  'zip',
+  'province'
+];
