@@ -175,7 +175,7 @@ class TypeGenius {
     const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
     const boundingBox = activeElement.getBoundingClientRect();
     this.hintContainer.style.display = 'block';
-    this.hintContainer.style.top = `${boundingBox.bottom}px`;
+    this.hintContainer.style.top = `${boundingBox.bottom + window.scrollY}px`;
     this.hintContainer.style.left = `${boundingBox.left}px`;
     this.hintContainer.innerText = this.currentHint;
   }
