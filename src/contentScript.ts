@@ -122,13 +122,13 @@ class TypeGenius {
 
   loadFunctionsRequest(field: string, payload: string) {
     const options = {
-      "model": "text-davinci-002",
-      "max_tokens": 10,
-      "temperature": 0.5,
-      "top_p": 0.5,
-      "n": 1,
-      "stream": false,
-      "stop": "\n",
+      // "model": "text-davinci-002",
+      // "max_tokens": 10,
+      // "temperature": 0.5,
+      // "top_p": 0.5,
+      // "n": 1,
+      // "stream": false,
+      // "stop": "\n",
       "prompt": payload,
       field,
       payload,
