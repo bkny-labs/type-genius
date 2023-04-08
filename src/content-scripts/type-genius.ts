@@ -102,7 +102,7 @@ export class TypeGenius {
       "stream": false,
       "stop": '"',
       "prompt": prompt,
-      "suffix": '"',
+      // "suffix": '"',
       ...this.options
     };
     console.log('options', options);
