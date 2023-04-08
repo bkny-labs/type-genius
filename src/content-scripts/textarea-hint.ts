@@ -53,7 +53,6 @@ export class TextareaHint {
   }
 
   copyStyles() {
-    console.log('copy styles');
     const styleProps = [
       'fontSize',
       'fontFamily',
@@ -86,7 +85,6 @@ export class TextareaHint {
   }
 
   hide() {
-    console.log('hide');
     this.hintElement.style.display = 'none';
     this.removeListeners();
   }
@@ -97,7 +95,6 @@ export class TextareaHint {
   }
 
   removeListeners() {
-    console.log('remove listener');
     window.removeEventListener('resize', this.copyStylesHandler);
     if (this.inputElement !== null) {
       this.inputElement.removeEventListener('scroll', this.scrollHandler);
@@ -115,7 +112,6 @@ export class TextareaHint {
   }
 
   show() {
-    console.log('show');
     this.hintElement.style.display = 'inline';
     this.addListeners();
     this.copyStyles();

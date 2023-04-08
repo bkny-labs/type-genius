@@ -3,6 +3,7 @@ import { debounce } from 'lodash';
 import { blacklistFields } from '../models/constants';
 import { Options } from '../models/options';
 import { TextareaHint } from './textarea-hint';
+import { InputHint } from './input-hint';
 
 export class TypeGenius {
   private apiKey: string = undefined;
@@ -10,14 +11,10 @@ export class TypeGenius {
   private debouncedRequestLoader: (field: string, text: string) => void;
   private enabled = false;
   private handleKeyUp: (event: KeyboardEvent) => void;
-  private hintContainer: HTMLDivElement;
+  
   private options: Options;
+  private inputHint: InputHint;
   private textAreaHint: TextareaHint;
-
-  constructor() {
-    this.textAreaHint = new TextareaHint();
-    this.textAreaHint.addElements();
-  }
 
   addListeners() {
     this.debouncedRequestLoader = debounce(this.loadRequest.bind(this), 1000);
@@ -52,24 +49,26 @@ export class TypeGenius {
     activeElement.value += this.currentHint;
     this.currentHint = '';
     this.hideHint();
+    // Run next completion
+    this.debouncedRequestLoader(activeElement.name, activeElement.value);
   }
 
   dispose() {
     document.removeEventListener('keyup', this.handleKeyUp);
-    document.body.removeChild(this.hintContainer);
-    this.hintContainer = null;
   }
 
   hideHint() {
-    this.hintContainer.style.display = 'none';
+    this.inputHint.hide();
     this.textAreaHint.hide();
   }
 
   init() {
-    this.hintContainer = document.createElement('div');
-    document.body.appendChild(this.hintContainer);
-    this.hintContainer.className = 'type-genius-hint';
-    this.hintContainer.style.display = 'none';
+    this.textAreaHint = new TextareaHint();
+    this.textAreaHint.addElements();
+
+    this.inputHint = new InputHint();
+    this.inputHint.addElements();
+    
     this.addListeners();
   }
 
@@ -105,7 +104,7 @@ export class TypeGenius {
     })
     .then(response => response.json())
     .then(data => {
-      this.currentHint = data.choices[0].text;
+      this.currentHint = data.choices[0].text.trim();
       this.showHint();
     })
     .catch(error => console.error(error));
@@ -131,7 +130,7 @@ export class TypeGenius {
         this.currentHint = '';
         this.hideHint();
       } else {
-        this.currentHint = data.payload.text;
+        this.currentHint = data.payload.text.trim();
         this.showHint();
       }
     })
@@ -158,18 +157,17 @@ export class TypeGenius {
   }
 
   showHint() {
-    const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
-    if (activeElement instanceof HTMLTextAreaElement) {
-      this.textAreaHint.setHint(this.currentHint);
-      this.textAreaHint.setInput(activeElement);
-      this.textAreaHint.show();
-    } else {
-      const boundingBox = activeElement.getBoundingClientRect();
-      this.hintContainer.style.display = 'block';
-      this.hintContainer.style.top = `${boundingBox.bottom + window.scrollY}px`;
-      this.hintContainer.style.left = `${boundingBox.left}px`;
-      this.hintContainer.innerText = this.currentHint;
+    if (this.currentHint.length > 0) {
+      const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
+      if (activeElement instanceof HTMLTextAreaElement) {
+        this.textAreaHint.setHint(this.currentHint);
+        this.textAreaHint.setInput(activeElement);
+        this.textAreaHint.show();
+      } else {
+        this.inputHint.setHint(this.currentHint);
+        this.inputHint.setInput(activeElement);
+        this.inputHint.show();
+      }
     }
-
   }
 }

@@ -1,9 +1,15 @@
-.type-genius-hint {
-  background-color: white;
-  color: black;
-  padding: 16px;
+#type-genius__input__hint {
+  padding: 8px;
   position: absolute;
   z-index: 100000;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Consolas', monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  color: #999;
+  pointer-events: none;
+  background: #000;
 }
 
 #type-genius__hint {
