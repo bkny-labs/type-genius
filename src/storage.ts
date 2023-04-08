@@ -1,7 +1,9 @@
+import { Options } from './models/options';
+
 // Define your storage data here
 export interface Storage {
   apiKey: string;
-  options: unknown;
+  options: Options;
   typeGeniusEnabled: boolean;
 } // eslint-disable-line
 

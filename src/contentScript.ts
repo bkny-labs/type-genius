@@ -2,6 +2,7 @@ import '../styles/contentScript.scss';
 
 import { debounce } from 'lodash';
 import { getStorageData, getStorageItem } from './storage';
+import { Options } from './models/options';
 
 const blacklistFields = [
   'name',
@@ -30,6 +31,7 @@ class TypeGenius {
   private enabled = false;
   private handleKeyUp: (event: KeyboardEvent) => void;
   private hintContainer: HTMLDivElement;
+  private options: Options;
 
   addListeners() {
     this.debouncedRequestLoader = debounce(this.loadRequest.bind(this), 1000);
@@ -101,7 +103,8 @@ class TypeGenius {
       "n": 1,
       "stream": false,
       "stop": "\n",
-      "prompt": payload
+      "prompt": payload,
+      ...this.options
     };
     return fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
@@ -121,16 +124,10 @@ class TypeGenius {
 
   loadFunctionsRequest(field: string, payload: string) {
     const options = {
-      // "model": "text-davinci-002",
-      // "max_tokens": 10,
-      // "temperature": 0.5,
-      // "top_p": 0.5,
-      // "n": 1,
-      // "stream": false,
-      // "stop": "\n",
       "prompt": payload,
       field,
       payload,
+      ...this.options
     };
     return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
       method: 'POST',
@@ -168,6 +165,10 @@ class TypeGenius {
     }
   }
 
+  setOptions(options: Options) {
+    this.options = options;
+  }
+
   showHint() {
     const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
     const boundingBox = activeElement.getBoundingClientRect();
@@ -185,6 +186,7 @@ chrome.runtime.onMessage.addListener(() => {
     console.log('refresh', data);
     typeGenius.setEnabled(data.typeGeniusEnabled);
     typeGenius.setApiKey(data.apiKey);
+    typeGenius.setOptions(data.options);
   });
 });
 

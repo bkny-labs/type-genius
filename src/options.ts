@@ -1,5 +1,6 @@
 import '../styles/options.scss';
 
+import { Options } from './models/options';
 import { setStorageItem } from './storage';
 import { refreshData } from './utils/refresh-data';
 
@@ -14,7 +15,7 @@ window.addEventListener('load', () => {
 
 function saveOptions(): void {
     const form = document.getElementById('optionsForm') as HTMLFormElement;
-    const options = {
+    const options: Options = {
       model: (form.elements.namedItem('model') as HTMLSelectElement).value,
       max_tokens: parseInt((form.elements.namedItem('max_tokens') as HTMLInputElement).value, 10),
       temperature: parseFloat((form.elements.namedItem('temperature') as HTMLInputElement).value),
@@ -32,5 +33,5 @@ function saveOptions(): void {
     refreshData();
 }
 
-  export { saveOptions };
+export { saveOptions };
   
