@@ -92,6 +92,7 @@ export class TypeGenius {
   }
   
   loadApiRequest(field: string, payload: string) {
+    const prompt = `Complete the field "${field}"\nField value: "${payload}`;
     const options = {
       "model": "text-davinci-002",
       "max_tokens": 10,
@@ -100,7 +101,8 @@ export class TypeGenius {
       "n": 1,
       "stream": false,
       "stop": "\n",
-      "prompt": payload,
+      "prompt": prompt,
+      "suffix": '"',
       ...this.options
     };
     console.log('options', options);
@@ -115,7 +117,9 @@ export class TypeGenius {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      this.currentHint = data.choices[0].text.trim();
+      const response = data.choices[0].text;
+      const whitespace = /\s/.test(response[0]) ? ' ':'';
+      this.currentHint = whitespace + response.trim();
       this.showHint();
     })
     .catch(error => console.error(error));
@@ -141,7 +145,7 @@ export class TypeGenius {
         this.currentHint = '';
         this.hideHint();
       } else {
-        this.currentHint = data.payload.text.trim();
+        this.currentHint = ' ' + data.payload.text.trim();
         this.showHint();
       }
     })
