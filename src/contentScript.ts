@@ -121,16 +121,29 @@ class TypeGenius {
   }
 
   loadFunctionsRequest(field: string, payload: string) {
+    const options = {
+      "model": "text-davinci-002",
+      "max_tokens": 10,
+      "temperature": 0.5,
+      "top_p": 0.5,
+      "n": 1,
+      "stream": false,
+      "stop": "\n",
+      "prompt": payload,
+      field,
+      payload,
+    };
     return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ field, payload })
+      body: JSON.stringify(options)
     })
     .then(response => response.json())
     .then(data => {
-      const response: string = data.res;
+      console.log('data', data);
+      const response: string = data.response;
       console.log(response);
       if (response.startsWith('Error')) {
         this.currentHint = '';
