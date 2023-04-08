@@ -140,12 +140,11 @@ class TypeGenius {
     })
     .then(response => response.json())
     .then(data => {
-      const response: string = data.response;
-      if (response.startsWith('Error')) {
+      if (data.error) {
         this.currentHint = '';
         this.hideHint();
       } else {
-        this.currentHint = data.response;
+        this.currentHint = data.payload.text;
         this.showHint();
       }
     })
