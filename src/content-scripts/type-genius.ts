@@ -93,7 +93,6 @@ export class TypeGenius {
       ...this.options
     };
     console.log('options', options);
-    console.log('options', this.options);
     return fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -104,6 +103,7 @@ export class TypeGenius {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       this.currentHint = data.choices[0].text.trim();
       this.showHint();
     })
