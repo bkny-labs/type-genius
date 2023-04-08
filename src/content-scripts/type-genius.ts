@@ -73,10 +73,12 @@ export class TypeGenius {
   }
 
   loadRequest(field: string, payload: string) {
-    if (this.apiKey !== undefined) {
-      return this.loadApiRequest(field, payload);
-    } else {
-      return this.loadFunctionsRequest(field, payload);
+    if (payload.length > 0) {
+      if (this.apiKey !== undefined) {
+        return this.loadApiRequest(field, payload);
+      } else {
+        return this.loadFunctionsRequest(field, payload);
+      }
     }
   }
   
