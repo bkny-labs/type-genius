@@ -100,7 +100,7 @@ export class TypeGenius {
       "top_p": 0.5,
       "n": 1,
       "stream": false,
-      "stop": "\n",
+      "stop": '"',
       "prompt": prompt,
       "suffix": '"',
       ...this.options
