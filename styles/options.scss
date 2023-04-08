@@ -61,7 +61,7 @@ $input-text-active: #BFD2FF;
   border-radius: 2px;
   padding: 1rem 1.4rem 1.1rem;
   background: $input-background;
-  input { border-style: none; background: transparent; outline: none; }
+  input, textarea { border-style: none; background: transparent; outline: none; }
   &:after {
     content: "";
     position: absolute;
@@ -79,7 +79,7 @@ $input-text-active: #BFD2FF;
   }
 }
 
-.webflow-style-input input {
+.webflow-style-input input, .webflow-style-input textarea {
   flex-grow: 1;
   color: $input-text-active;
   font-size: 1.2rem;
@@ -141,8 +141,40 @@ $input-text-active: #BFD2FF;
   color: black;
 }
 
+form {
+  margin-bottom: 50px;
+}
 
+fieldset {
+  width: 500px;
+}
 
+input {
+  color: #fff;
+}
+
+label {
+  color: #a7a7a7;
+  display: block;
+  margin-top: 12px;
+  &.label-inline {
+    display: inline-block;
+  }
+}
+
+input[type="checkbox"] {
+  margin: 10px 5px;
+}
+
+select {
+  background: #403b61;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  display: inline-block;
+  margin: 0;
+  font-size: 18px;
+}
 
 //
 
@@ -201,14 +233,3 @@ $input-text-active: #BFD2FF;
   font-family: 'Consolas', monospace;
 }
 
-fieldset {
-  width: 500px;
-}
-
-input {
-  color: #fff;
-}
-
-label {
-  color: #a7a7a7;
-}
