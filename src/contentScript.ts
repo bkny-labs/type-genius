@@ -24,7 +24,7 @@ const blacklistFields = [
 ];
 
 class TypeGenius {
-  private apiKey: string = null;
+  private apiKey: string = undefined;
   private currentHint = '';
   private debouncedRequestLoader: (field: string, text: string) => void;
   private enabled = false;
@@ -84,34 +84,16 @@ class TypeGenius {
     this.hintContainer.style.display = 'none';
     this.addListeners();
   }
-  
-  // loadRequest(field: string, payload: string) {
-  //   return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({ field, payload })
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     const response: string = data.response;
-  //     console.log(response);
-  //     if (response.startsWith('Error')) {
-  //       this.currentHint = '';
-  //       this.hideHint();
-  //     } else {
-  //       this.currentHint = data.response;
-  //       this.showHint(data.response);
-  //     }
-  //   })
-  //   .catch(error => console.error(error));
-  // }
 
   loadRequest(field: string, payload: string) {
-    if (this.apiKey === null) {
-      throw new Error('API Key is required');
+    if (this.apiKey !== undefined) {
+      return this.loadApiRequest(field, payload);
+    } else {
+      return this.loadFunctionsRequest(field, payload);
     }
+  }
+  
+  loadApiRequest(field: string, payload: string) {
     const options = {
       "model": "text-davinci-002",
       "max_tokens": 10,
@@ -134,6 +116,29 @@ class TypeGenius {
     .then(data => {
       this.currentHint = data.choices[0].text;
       this.showHint();
+    })
+    .catch(error => console.error(error));
+  }
+
+  loadFunctionsRequest(field: string, payload: string) {
+    return fetch('https://xnqrt3dy9f.execute-api.us-east-1.amazonaws.com/dev/gpt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ field, payload })
+    })
+    .then(response => response.json())
+    .then(data => {
+      const response: string = data.res;
+      console.log(response);
+      if (response.startsWith('Error')) {
+        this.currentHint = '';
+        this.hideHint();
+      } else {
+        this.currentHint = data.response;
+        this.showHint();
+      }
     })
     .catch(error => console.error(error));
   }
