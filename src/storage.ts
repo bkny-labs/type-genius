@@ -1,6 +1,7 @@
 // Define your storage data here
 export interface Storage {
-  openaiApiKey: string;
+  apiKey: string;
+  options: unknown;
   typeGeniusEnabled: boolean;
 } // eslint-disable-line
 

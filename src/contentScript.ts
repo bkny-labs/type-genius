@@ -44,7 +44,6 @@ class TypeGenius {
         // TODO: Handle tab
         this.applyHint();
       } else {
-        console.log(activeElement.type);
         // Check if the activeElement is an input or textarea element
         if ((activeElement.tagName === 'INPUT' && activeElement.type === 'text') || activeElement.tagName === 'TEXTAREA') {
           // Check blacklist
@@ -142,9 +141,7 @@ class TypeGenius {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data', data);
       const response: string = data.response;
-      console.log(response);
       if (response.startsWith('Error')) {
         this.currentHint = '';
         this.hideHint();
@@ -185,8 +182,9 @@ const typeGenius = new TypeGenius();
 
 chrome.runtime.onMessage.addListener(() => {
   getStorageData().then(data => {
+    console.log('refresh', data);
     typeGenius.setEnabled(data.typeGeniusEnabled);
-    typeGenius.setApiKey(data.openaiApiKey);
+    typeGenius.setApiKey(data.apiKey);
   });
 });
 
@@ -194,6 +192,8 @@ getStorageItem('typeGeniusEnabled').then((value) => {
   typeGenius.setEnabled(value);
 });
 
-getStorageItem('openaiApiKey').then((value) => {
-  typeGenius.setApiKey(value);
+getStorageItem('apiKey').then((value) => {
+  if (value) {
+    typeGenius.setApiKey(value);
+  }
 });

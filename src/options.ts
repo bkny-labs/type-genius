@@ -1,5 +1,8 @@
 import '../styles/options.scss';
 
+import { setStorageItem } from './storage';
+import { refreshData } from './utils/refresh-data';
+
 window.addEventListener('load', () => {
     const saveButton = document.getElementById('saveButton');
     if (saveButton) {
@@ -22,8 +25,11 @@ function saveOptions(): void {
       prompt: (form.elements.namedItem('prompt') as HTMLTextAreaElement).value,
     };
   
-    localStorage.setItem('options', JSON.stringify(options));
+    // localStorage.setItem('options', JSON.stringify(options));
+    setStorageItem('options', options);
+    setStorageItem('apiKey', (form.elements.namedItem('apiKey') as HTMLSelectElement).value);
     console.log('Options saved to localStorage.');
+    refreshData();
 }
 
   export { saveOptions };
