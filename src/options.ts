@@ -1,7 +1,7 @@
 import '../styles/options.scss';
 
 import { Options } from './models/options';
-import { getStorageData, setStorageItem } from './storage';
+import { getStorageData, setStorageItem } from './utils/storage';
 import { refreshData } from './utils/refresh-data';
 
 const loadStorage = () => getStorageData().then(data => {

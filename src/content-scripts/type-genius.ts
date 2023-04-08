@@ -11,6 +11,7 @@ export class TypeGenius {
   private debouncedRequestLoader: (field: string, text: string) => void;
   private enabled = false;
   private handleKeyUp: (event: KeyboardEvent) => void;
+  private handleKeyDown: (event: KeyboardEvent) => void;
   
   private options: Options;
   private inputHint: InputHint;
@@ -22,13 +23,7 @@ export class TypeGenius {
     this.handleKeyUp = (event: KeyboardEvent) => {
       const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
       // console.log('handleKeyUp', event);
-      if (event.key === 'Escape') {
-        this.currentHint = '';
-        this.hideHint();
-      } else if (event.key === 'ArrowRight') {
-        // TODO: Handle tab
-        this.applyHint();
-      } else {
+      if (event.key !== 'Escape' && event.key !== 'Tab') {
         // Check if the activeElement is an input or textarea element
         if ((activeElement.tagName === 'INPUT' && activeElement.type === 'text') || activeElement.tagName === 'TEXTAREA') {
           // Check blacklist
@@ -41,7 +36,20 @@ export class TypeGenius {
       }
     }
 
+    this.handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        this.currentHint = '';
+        this.hideHint();
+      } else if (event.key === 'Tab') {
+        if (this.currentHint.length > 0) {
+          event.preventDefault();
+          this.applyHint();
+        }
+      }
+    }
+
     document.addEventListener('keyup', this.handleKeyUp);
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
   applyHint() {

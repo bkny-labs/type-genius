@@ -1,4 +1,4 @@
-import { Options } from './models/options';
+import { Options } from '../models/options';
 
 // Define your storage data here
 export interface Storage {

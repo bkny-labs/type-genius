@@ -1,7 +1,7 @@
 import '../styles/contentScript.scss';
 
 import { TypeGenius } from './content-scripts/type-genius';
-import { getStorageData } from './storage';
+import { getStorageData } from './utils/storage';
 
 const typeGenius = new TypeGenius();
 
