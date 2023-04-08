@@ -43,6 +43,7 @@ export class TypeGenius {
       } else if (event.key === 'Tab') {
         if (this.currentHint.length > 0) {
           event.preventDefault();
+          event.stopPropagation();
           this.applyHint();
         }
       }
