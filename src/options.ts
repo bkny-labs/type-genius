@@ -1,17 +1,31 @@
 import '../styles/options.scss';
 
 import { Options } from './models/options';
-import { setStorageItem } from './storage';
+import { getStorageData, setStorageItem } from './storage';
 import { refreshData } from './utils/refresh-data';
 
+const loadStorage = () => getStorageData().then(data => {
+  const options: Options = data.options;
+  const form = document.getElementById('optionsForm') as HTMLFormElement;
+  (form.elements.namedItem('apiKey') as HTMLInputElement).value = data.apiKey;
+  (form.elements.namedItem('model') as HTMLSelectElement).value = options.model;
+  (form.elements.namedItem('max_tokens') as HTMLInputElement).value = options.max_tokens + '';
+  (form.elements.namedItem('temperature') as HTMLInputElement).value = options.temperature + '';
+  (form.elements.namedItem('top_p') as HTMLInputElement).value = options.top_p + '';
+  (form.elements.namedItem('n') as HTMLInputElement).value = options.n + '';
+  (form.elements.namedItem('stream') as HTMLInputElement).checked = options.stream;
+  (form.elements.namedItem('stop') as HTMLInputElement).value = options.stop;
+});
+
 window.addEventListener('load', () => {
-    const saveButton = document.getElementById('saveButton');
-    if (saveButton) {
-      saveButton.addEventListener('click', saveOptions);
-    } else {
-      console.error('Save button not found in the DOM');
-    }
-  });
+  loadStorage();
+  const saveButton = document.getElementById('saveButton');
+  if (saveButton) {
+    saveButton.addEventListener('click', saveOptions);
+  } else {
+    console.error('Save button not found in the DOM');
+  }
+});
 
 function saveOptions(): void {
     const form = document.getElementById('optionsForm') as HTMLFormElement;
@@ -26,10 +40,9 @@ function saveOptions(): void {
     };
 
     setStorageItem('options', options);
-    setStorageItem('apiKey', (form.elements.namedItem('apiKey') as HTMLSelectElement).value);
+    setStorageItem('apiKey', (form.elements.namedItem('apiKey') as HTMLInputElement).value);
     console.log('Options saved to localStorage.');
     refreshData();
 }
 
 export { saveOptions };
-  

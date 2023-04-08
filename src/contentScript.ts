@@ -1,8 +1,8 @@
 import '../styles/contentScript.scss';
 
 import { debounce } from 'lodash';
-import { getStorageData, getStorageItem } from './storage';
 import { Options } from './models/options';
+import { getStorageData } from './storage';
 
 const blacklistFields = [
   'name',
