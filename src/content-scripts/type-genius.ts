@@ -27,7 +27,17 @@ export class TypeGenius {
         // Check if the activeElement is an input or textarea element
         if ((activeElement.tagName === 'INPUT' && activeElement.type === 'text') || activeElement.tagName === 'TEXTAREA') {
           // Check blacklist
-          if (blacklistFields.find((element) => element.toLowerCase() === activeElement.name.toLowerCase()) === undefined) {
+          const isBlacklisted = blacklistFields.some((pattern) => {
+            if (typeof pattern === 'string') {
+              return pattern.toLowerCase() === activeElement.name.toLowerCase();
+            } else if (pattern instanceof RegExp) {
+              return pattern.test(activeElement.name);
+            } else {
+              return false; // ignore invalid entries in the array
+            }
+          });
+          
+          if (!isBlacklisted) {
             this.currentHint = '';
             this.hideHint();
             this.debouncedRequestLoader(activeElement.name, activeElement.value);
