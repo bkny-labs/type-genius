@@ -1,7 +1,64 @@
-.type-genius-hint {
-  background-color: white;
-  color: black;
-  padding: 16px;
+#type-genius__input__hint {
+  padding: 8px;
   position: absolute;
   z-index: 100000;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Consolas', monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  color: #999;
+  pointer-events: none;
+  background: #000;
+}
+
+#type-genius__hint {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-color: transparent;
+  word-break: break-word;
+  overflow: hidden;
+  z-index: 100000;
+}
+
+#type-genius__hint-input,
+#type-genius__hint-text {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+#type-genius__hint-input {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  visibility: hidden;
+}
+
+#type-genius__hint-text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: #999;
 }

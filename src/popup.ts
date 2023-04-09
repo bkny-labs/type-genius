@@ -1,5 +1,5 @@
 import '../styles/popup.scss';
-import { getStorageItem, setStorageItem } from './storage';
+import { getStorageItem, setStorageItem } from './utils/storage';
 import { refreshData } from './utils/refresh-data';
 
 document.getElementById('go-to-options').addEventListener('click', () => {
