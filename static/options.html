@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="alert alert--success">
+  <div class="alert alert--success" id="alertMessage">
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     OpenAI API Status: Connected
   </div>
@@ -59,7 +59,7 @@
 
       <label for="stop">Stop</label>
       <div class="webflow-style-input">
-        <input type="text" placeholder="Stop" id="stop" name="stop" value='"' required>
+        <input type="text" placeholder="Stop" id="stop" name="stop" value="\n" required>
       </div>
 
       <button class="save-button" id="saveButton" type="button">Save</button>
