@@ -45,21 +45,12 @@
   margin: 0;
   border: none;
   background-color: transparent;
+}
+
+.type-genius__hint-value {
   visibility: hidden;
 }
 
-#type-genius__hint-text {
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  display: inline-block;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background-color: transparent;
-  color: #999;
+.type-genius__hint-suggestion {
+  opacity: 0.33;
 }

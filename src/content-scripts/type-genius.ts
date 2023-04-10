@@ -157,12 +157,12 @@ export class TypeGenius {
     if (this.currentHint.length > 0) {
       const activeElement = document.activeElement as HTMLInputElement | HTMLTextAreaElement;
       if (activeElement instanceof HTMLTextAreaElement) {
-        this.textAreaHint.setHint(this.currentHint);
         this.textAreaHint.setInput(activeElement);
+        this.textAreaHint.setHint(this.currentHint);
         this.textAreaHint.show();
       } else {
-        this.inputHint.setHint(this.currentHint);
         this.inputHint.setInput(activeElement);
+        this.inputHint.setHint(this.currentHint);
         this.inputHint.show();
       }
     }

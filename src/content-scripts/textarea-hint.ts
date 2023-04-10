@@ -2,13 +2,13 @@ export class TextareaHint {
   private inputElement: HTMLTextAreaElement = null;
   private hintElement: HTMLDivElement;
   private hintInput: HTMLSpanElement;
-  private hintText: HTMLSpanElement;
   private resizeObserver: ResizeObserver;
   private copyStylesHandler: () => void;
   private scrollHandler: () => void;
   private inputHandler: () => void;
   private moveHandler: () => void;
   private running = false;
+  private hint: string;
 
   addElements() {
     // create the div element with id="type-genius__hint"
@@ -19,11 +19,6 @@ export class TextareaHint {
     this.hintInput = document.createElement("span");
     this.hintInput.id = "type-genius__hint-input";
     this.hintElement.appendChild(this.hintInput);
-
-    // create the second span element with id="type-genius__hint-text" and append it to the div
-    this.hintText = document.createElement("span");
-    this.hintText.id = "type-genius__hint-text";
-    this.hintElement.appendChild(this.hintText);
 
     // append the div to the document body or a specific element on the page
     document.body.appendChild(this.hintElement);
@@ -42,16 +37,7 @@ export class TextareaHint {
       this.hintElement.scrollLeft = this.inputElement.scrollLeft;
     };
     this.inputElement.addEventListener('scroll', this.scrollHandler);
-
-    // Update hint on input change
-    this.inputHandler = () => {
-      this.hintInput.innerText = this.inputElement.value;
-      if (this.inputElement.value.includes('\n') === true) {
-        this.hintText.style.display = 'block';
-      } else {
-        this.hintText.style.display = 'inline-block';
-      }
-    }
+    this.inputHandler = this.onInputChange.bind(this);
     this.inputElement.addEventListener('input', this.inputHandler);
 
     // Positioning is handled due to inconsistent page scroll behaviors
@@ -76,7 +62,8 @@ export class TextareaHint {
       'marginTop',
       'marginRight',
       'marginBottom',
-      'marginLeft'
+      'marginLeft',
+      'color'
     ];
 
     styleProps.forEach((prop) => {
@@ -86,9 +73,38 @@ export class TextareaHint {
     this.move();
   }
 
+  getWordElements(input: string, className: string) {
+    const fragment = document.createDocumentFragment();
+    const words = input.split(' ');
+
+    words.forEach((word, index) => {
+      const span = document.createElement('span');
+      span.className = className;
+      span.textContent = word;
+      fragment.appendChild(span);
+    
+      if (index < words.length - 1) {
+        const space = document.createTextNode(' ');
+        fragment.appendChild(space);
+      }
+    });
+
+    return fragment;
+  }
+
   hide() {
     this.hintElement.style.display = 'none';
     this.removeListeners();
+  }
+
+  onInputChange() {
+    this.hintInput.innerHTML = '';
+
+    const userValueElements = this.getWordElements(this.inputElement.value, 'type-genius__hint-value')
+    this.hintInput.appendChild(userValueElements);
+
+    const hintElements = this.getWordElements(this.hint, 'type-genius__hint-suggestion')
+    this.hintInput.appendChild(hintElements);
   }
 
   move() {
@@ -115,7 +131,8 @@ export class TextareaHint {
   }
 
   setHint(hint: string) {
-    this.hintText.textContent = hint;
+    this.hint = hint;
+    this.onInputChange();
   }
 
   setInput(inputElement: HTMLTextAreaElement) {
