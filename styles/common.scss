@@ -18,3 +18,26 @@ body {
 
   align-items: center;
 }
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  color: white;
+  margin-bottom: 15px;
+  &--success {
+    background-color: #4caf50; /* Green */
+  }
+  
+  &--warning {
+    background-color: #ff9800; /* Orange */
+  }
+  
+  &--info {
+    background-color: #2196f3; /* Blue */
+  }
+  
+  &--error {
+    background-color: #f44336; /* Red */
+  }
+  
+}
