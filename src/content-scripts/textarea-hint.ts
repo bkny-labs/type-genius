@@ -7,6 +7,8 @@ export class TextareaHint {
   private copyStylesHandler: () => void;
   private scrollHandler: () => void;
   private inputHandler: () => void;
+  private moveHandler: () => void;
+  private running = false;
 
   addElements() {
     // create the div element with id="type-genius__hint"
@@ -28,6 +30,7 @@ export class TextareaHint {
   }
 
   addListeners() {
+    // Handle styles
     this.copyStylesHandler = this.copyStyles.bind(this);
     window.addEventListener('resize', this.copyStylesHandler);
     this.resizeObserver = new ResizeObserver(this.copyStylesHandler);
@@ -50,6 +53,11 @@ export class TextareaHint {
       }
     }
     this.inputElement.addEventListener('input', this.inputHandler);
+
+    // Positioning is handled due to inconsistent page scroll behaviors
+    // This tends to happen with nested scrollable elements
+    this.running = true;
+    this.update();
   }
 
   copyStyles() {
@@ -75,18 +83,19 @@ export class TextareaHint {
       this.hintElement.style[prop] = window.getComputedStyle(this.inputElement)[prop];
     });
 
-    this.hintElement.style.position = 'absolute';
-    this.hintElement.style.display = 'inline-block';
-    // Calculate top and left position of hint
-    const inputRect = this.inputElement.getBoundingClientRect();
-    this.hintElement.style.top = inputRect.top + window.scrollY + 'px';
-    this.hintElement.style.left = inputRect.left + window.scrollX + 'px';
-    this.hintElement.style.pointerEvents = 'none';
+    this.move();
   }
 
   hide() {
     this.hintElement.style.display = 'none';
     this.removeListeners();
+  }
+
+  move() {
+    // Calculate top and left position of hint
+    const inputRect = this.inputElement.getBoundingClientRect();
+    this.hintElement.style.top = inputRect.y + 'px';
+    this.hintElement.style.left = inputRect.x + 'px';
   }
 
   removeElements() {
@@ -95,6 +104,8 @@ export class TextareaHint {
   }
 
   removeListeners() {
+    this.running = false;
+    window.removeEventListener('scroll', this.moveHandler);
     window.removeEventListener('resize', this.copyStylesHandler);
     if (this.inputElement !== null) {
       this.inputElement.removeEventListener('scroll', this.scrollHandler);
@@ -116,6 +127,13 @@ export class TextareaHint {
     this.addListeners();
     this.copyStyles();
     this.inputHandler();
+  }
+
+  update() {
+    this.move();
+    if (this.running === true) {
+      window.requestAnimationFrame(this.update.bind(this));
+    }
   }
 }
 

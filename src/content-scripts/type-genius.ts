@@ -115,6 +115,7 @@ export class TypeGenius {
       // "suffix": '"',
       ...this.options
     };
+    const payloadWhitespace = /\s/.test(payload[payload.length - 1]);
     console.log('options', options);
     return fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
@@ -128,7 +129,7 @@ export class TypeGenius {
     .then(data => {
       console.log(data);
       const response = data.choices[0].text;
-      const whitespace = /\s/.test(response[0]) ? ' ':'';
+      const whitespace = payloadWhitespace === false && /\s/.test(response[0]) ? ' ':'';
       this.currentHint = whitespace + response.trim();
       this.showHint();
     })
