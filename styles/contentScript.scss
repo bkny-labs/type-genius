@@ -13,12 +13,13 @@
 }
 
 #type-genius__hint {
-  position: absolute;
+  position: fixed;
   display: inline-block;
   top: 0;
   left: 0;
   pointer-events: none;
-  background-color: transparent;
+  background-color: transparent !important;
+  border-color: transparent !important;
   word-break: break-word;
   overflow: hidden;
   z-index: 100000;
