@@ -11,13 +11,13 @@ export class TextareaHint {
   private hint: string;
 
   addElements() {
-    // create the div element with id="type-genius__hint"
-    this.hintElement = document.createElement("div");
-    this.hintElement.id = "type-genius__hint";
+    // create the div element with id='type-genius__hint'
+    this.hintElement = document.createElement('div');
+    this.hintElement.id = 'type-genius__hint';
 
-    // create the first span element with id="type-genius__hint-input" and append it to the div
-    this.hintInput = document.createElement("span");
-    this.hintInput.id = "type-genius__hint-input";
+    // create the first span element with id='type-genius__hint-input' and append it to the div
+    this.hintInput = document.createElement('span');
+    this.hintInput.id = 'type-genius__hint-input';
     this.hintElement.appendChild(this.hintInput);
 
     // append the div to the document body or a specific element on the page
@@ -63,7 +63,17 @@ export class TextareaHint {
       'marginRight',
       'marginBottom',
       'marginLeft',
-      'color'
+      'color',
+      'backgroundColor',
+      'textDecoration',
+      'textTransform',
+      'textAlign',
+      'verticalAlign',
+      'textOverflow',
+      'letterSpacing',
+      'textShadow',
+      'boxShadow',
+      'borderRadius'
     ];
 
     styleProps.forEach((prop) => {
@@ -75,21 +85,33 @@ export class TextareaHint {
 
   getWordElements(input: string, className: string) {
     const fragment = document.createDocumentFragment();
-    const words = input.split(' ');
-
+    const words = input.split(/\s+/);
+  
     words.forEach((word, index) => {
       const span = document.createElement('span');
       span.className = className;
       span.textContent = word;
       fragment.appendChild(span);
-    
+  
+      // Add whitespace after each word, except the last one
       if (index < words.length - 1) {
-        const space = document.createTextNode(' ');
-        fragment.appendChild(space);
+        const whitespaceChar = this.getWhitespaceChar(input, word);
+        const whitespace = document.createTextNode(whitespaceChar);
+        fragment.appendChild(whitespace);
       }
     });
-
+  
     return fragment;
+  }
+  
+  getWhitespaceChar(input: string, word: string) {
+    // Find the position of the end of the word in the input string
+    const wordEndIndex = input.indexOf(word) + word.length;
+  
+    // Extract the whitespace character after the word
+    const whitespaceChar = input.substring(wordEndIndex, wordEndIndex + 1);
+  
+    return whitespaceChar;
   }
 
   hide() {
