@@ -95,8 +95,6 @@ export class TypeGenius {
     if (payload.length > 0) {
       if (this.apiKey !== undefined) {
         return this.loadApiRequest(field, payload);
-      } else {
-        return this.loadFunctionsRequest(field, payload);
       }
     }
   }
@@ -132,33 +130,6 @@ export class TypeGenius {
       const whitespace = payloadWhitespace === false && /\s/.test(response[0]) ? ' ':'';
       this.currentHint = whitespace + response.trim();
       this.showHint();
-    })
-    .catch(error => console.error(error));
-  }
-
-  loadFunctionsRequest(field: string, payload: string) {
-    const options = {
-      "prompt": payload,
-      field,
-      payload,
-      ...this.options
-    };
-    return fetch('https://storied-arithmetic-ac0ce0.netlify.app/.netlify/functions/gpt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(options)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        this.currentHint = '';
-        this.hideHint();
-      } else {
-        this.currentHint = ' ' + data.payload.text.trim();
-        this.showHint();
-      }
     })
     .catch(error => console.error(error));
   }
