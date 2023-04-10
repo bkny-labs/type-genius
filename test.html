@@ -13,20 +13,8 @@
         <img src="static/images/logo.png" alt="" width="200px">
         <form>
             <fieldset>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email">
-
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Name">
-
-                <label for="gender">Gender</label>
-                <input type="text" name="gender" id="gender" placeholder="Gender">
-
-                <label for="phone">Phone</label>
-                <input type="tel" name="phone" id="phone" placeholder="Phone">
-
-                <label for="ethnicity">Ethnicity</label>
-                <input type="text" name="ethnicity" id="ethnicity" placeholder="Ethnicity">
+                <label for="search">Search</label>
+                <input type="text" name="search" id="search" placeholder="search">
 
                 <div class="autocomplete-container">
                     <div class="suggestion-container">
@@ -83,6 +71,10 @@
                         <textarea spellcheck="false" class="custom-textarea" name="spam" id="spam"></textarea>
                     </div>
                   </div>
+
+                  <label for="email">Email (blacklist field)</label>
+                  <input type="email" name="email" id="email" placeholder="Email">
+  
                 <input class="button-primary" type="submit" value="Submit">
             </fieldset>
         </form>
