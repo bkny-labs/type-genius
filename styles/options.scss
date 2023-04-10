@@ -208,6 +208,10 @@ select {
   background-color: transparent;
 }
 
+.long-textarea {
+  min-height: 5000px;
+}
+
 .suggestion-text, .type-genius-hint {
   position: absolute;
   top: 0;

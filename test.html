@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 </head>
+
 <body>
     <div class="container">
         <img src="static/images/logo.png" alt="" width="200px">
@@ -21,63 +23,79 @@
                         <label for="search">Search</label>
                         <textarea spellcheck="false" class="custom-textarea" name="search" id="search"></textarea>
                     </div>
-                    </div>
+                </div>
 
-                    <div class="autocomplete-container">
+                <div class="autocomplete-container">
                     <div class="suggestion-container">
                         <label for="query">Query</label>
                         <textarea spellcheck="false" class="custom-textarea" name="query" id="query"></textarea>
                     </div>
                 </div>
-                  
+
                 <div class="autocomplete-container">
                     <div class="suggestion-container">
                         <label for="story">Story</label>
                         <textarea spellcheck="false" class="custom-textarea" name="story" id="story"></textarea>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="autocomplete-container">
+                <div class="autocomplete-container">
                     <div class="suggestion-container">
                         <label for="movie-quotes">Movie Quotes</label>
-                        <textarea spellcheck="false" class="custom-textarea" name="movie-quotes" id="movie-quotes"></textarea>
+                        <textarea spellcheck="false" class="custom-textarea" name="movie-quotes"
+                            id="movie-quotes"></textarea>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="autocomplete-container">
+                <div class="autocomplete-container">
                     <div class="suggestion-container">
                         <label for="haiku">Haiku</label>
                         <textarea spellcheck="false" class="custom-textarea" name="haiku" id="haiku"></textarea>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="autocomplete-container">
+                <div class="autocomplete-container">
                     <div class="suggestion-container">
                         <label for="reply">Reply</label>
                         <textarea spellcheck="false" class="custom-textarea" name="reply" id="reply"></textarea>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="autocomplete-container">
+                <div class="autocomplete-container">
                     <div class="suggestion-container">
                         <label for="review">Review</label>
                         <textarea spellcheck="false" class="custom-textarea" name="review" id="review"></textarea>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="autocomplete-container">
+                <div class="autocomplete-container">
                     <div class="suggestion-container">
                         <label for="spam">Spam</label>
                         <textarea spellcheck="false" class="custom-textarea" name="spam" id="spam"></textarea>
                     </div>
-                  </div>
+                </div>
 
-                  <label for="email">Email (blacklist field)</label>
-                  <input type="email" name="email" id="email" placeholder="Email">
-  
+                <div class="autocomplete-container">
+                    <div class="suggestion-container">
+                        <label for="notes">Notes</label>
+                        <textarea spellcheck="false" class="custom-textarea" name="notes" id="notes"></textarea>
+                    </div>
+                </div>
+
+                <label for="email">Email (blacklist field)</label>
+                <input type="email" name="email" id="email" placeholder="Email">
+
+                <div class="autocomplete-container">
+                    <div class="suggestion-container">
+                        <label>Empty</label>
+                        <textarea spellcheck="false" class="custom-textarea long-textarea"></textarea>
+                    </div>
+                </div>
+
                 <input class="button-primary" type="submit" value="Submit">
             </fieldset>
         </form>
     </div>
 </body>
+
 </html>
