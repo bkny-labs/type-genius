@@ -3,3 +3,6 @@ node_modules
 .DS_Store
 .env
 functions/node_modules
+dist.crx
+dist.pem
+dist.zip
