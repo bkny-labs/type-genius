@@ -2,6 +2,8 @@
 
 .container {
   min-height: 75vh;
+  width: 420px;
+  margin: 0 auto;
 
   display: flex;
 
@@ -17,6 +19,10 @@ h1 {
 
 p {
   font-size: 18px;
+}
+
+a {
+  color: white;
 }
 
 .save-button {
