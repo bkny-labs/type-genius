@@ -48,6 +48,13 @@ function saveOptions(): void {
     setStorageItem('options', options);
     setStorageItem('apiKey', (form.elements.namedItem('apiKey') as HTMLInputElement).value);
     console.log('Options saved to localStorage.');
+
+    const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+
     refreshData();
 }
 

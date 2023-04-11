@@ -30,10 +30,6 @@ header {
     opacity: 1;
   }
 }
-.logo {
-  width: 100%;
-  text-align: center;
-}
 footer {
   display: flex;
   flex-direction: column;
@@ -106,7 +102,7 @@ footer {
   border-radius: 50%;
   position: relative;
   bottom: 6px;
-  left: 10px;
+  left: 5px;
   display: block;
   transition: $ts-speed;
   box-shadow: inset 0 0 1px 3px #4a426b, inset 0 0 6px 8px #423963, 0 20px 30px -10px rgba(0,0,0,0.4);
@@ -279,9 +275,9 @@ footer {
   opacity: 0;
 }
 .switch input:checked ~ label .bulb {
-  left: 120px;
+  left: 142px;
   background-color: #a7694a;
-  box-shadow: inset 0 0 1px 3px #a56758, inset 0 0 6px 8px #6b454f, 0 22px 0px -10px rgba(0,0,0,.4), 0 0 10px 20px rgba(253,184,67,.1);
+  box-shadow: inset 0 0 1px 3px #a56758, inset 0 0 6px 8px #6b454f, 0 14px 0px -11px rgba(0,0,0,.4), 0 0 10px 20px rgba(253,184,67,.1);
 }
 .switch input:checked ~ label .bulb > .bulb-center {
   background-color: #feed6b;

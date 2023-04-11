@@ -9,13 +9,19 @@
 </head>
 
 <body>
+  <div class="toast" id="toast">
+    <p>Settings Saved!</p>
+  </div>
   <div class="alert alert--success" id="alertMessage">
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     OpenAI API Status: Connected
   </div>
   <div class="container">
-    <img width="300px" src="/images/logo.png" alt="Type Genius Logo">
+    <div class="logo">
+      <a href="https://typegenius.app" target="_blank"><img width="300px" src="/images/logo.png" alt="Type Genius Logo"></a>
+    </div>
     <p>Configure your Type Genius settings here.</p>
+    
     <form id="optionsForm">
       <label for="apiKey">OpenAI API Key</label>
       <div class="webflow-style-input">
