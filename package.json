@@ -1,6 +1,6 @@
 {
   "name": "type-genius",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "A AI-powered Chrome extension that autocompletes your whole world",
   "scripts": {
     "start": "webpack --watch --config webpack.dev.js",
