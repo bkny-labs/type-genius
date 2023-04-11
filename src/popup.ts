@@ -2,7 +2,7 @@ import '../styles/popup.scss';
 import { getStorageItem, setStorageItem } from './utils/storage';
 import { refreshData } from './utils/refresh-data';
 
-document.getElementById('go-to-options').addEventListener('click', () => {
+document.querySelector('.go-to-options').addEventListener('click', () => {
   chrome.runtime.openOptionsPage();
 });
 
