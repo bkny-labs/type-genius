@@ -23,14 +23,6 @@
     <div class="logo">
       <a href="https://typegenius.app" target="_blank"><img width="60%" src="/images/logo.png" alt="Type Genius Logo"></a>
     </div>
-    
-    <div class="alert alert--error" id="alertMessage">
-      OpenAI API is not connected, please add your <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI API Key</a> to the <a class="go-to-options" href="#">settings page</a>. 
-    </div>
-
-    <div id="enabledMessage">
-      <p>Start typing in any input on the page to begin seeing suggestions...</p>
-    </div>
 
     <div class="switch">
       <input type="checkbox" name="toggle" id="toggle" checked>
@@ -51,6 +43,17 @@
         </i>    
       </label>
     </div>
+
+
+    <div class="alert alert--error" id="alertMessage">
+      OpenAI API is not connected, please add your <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI API Key</a> to the <a class="go-to-options" href="#">settings page</a>. 
+    </div>
+
+    <div class="alert alert--success" id="connectedMessage">
+      Your OpenAI API key is connected! Start typing in any textarea or search to see suggestions...
+    </div>
+
+
     <footer>
       <p class="version">TypeGenius v0.0.1-beta</p>
     </footer>
