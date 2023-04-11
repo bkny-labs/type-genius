@@ -5,7 +5,7 @@ $ts-speed: .7s;
   min-height: 200px;
   min-width: 300px;
 
-  padding: 2rem;
+  padding: 15px 20px 10px;
 
   display: flex;
 
@@ -15,8 +15,36 @@ $ts-speed: .7s;
   justify-content: center;
   a {
     color: #fff;
-    margin-top: 12px;
+    cursor: pointer;
   }
+}
+
+header {
+  text-align: left;
+  width: 100%;
+  .go-to-options {
+    color: #fff;
+    width: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+    opacity: 1;
+  }
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+  width: 100%;
+}
+.version {
+  font-size: 10px;
+  color: #9b4dc9;
+  margin-top: 8px;
+}
+
+#enabledMessage {
+  display: none;
 }
 
 .settings-button {
@@ -47,6 +75,7 @@ $ts-speed: .7s;
 
 .switch {
   position: relative;
+  padding: 12px 0px 6px;
 }
 .switch input {
   height: 100%;
@@ -59,7 +88,8 @@ $ts-speed: .7s;
   cursor: pointer;
 }
 .switch label {
-  height: 80px;
+  margin-top: 8px;
+  height: 60px;
   width: 220px;
   background-color: #39315a;
   border-radius: 100px;
@@ -67,13 +97,13 @@ $ts-speed: .7s;
   box-shadow: inset 0 0 20px rgba(0,0,0,0.2), inset 0 0 5px -2px rgba(0,0,0,0.4);
 }
 .switch label .bulb {
-  height: 80px;
-  width: 80px;
+  height: 72px;
+  width: 72px;
   background-color: #4a426b;
   border-radius: 50%;
   position: relative;
-  top: 0px;
-  left: 10px;
+  bottom: 6px;
+  left: 5px;
   display: block;
   transition: $ts-speed;
   box-shadow: inset 0 0 1px 3px #4a426b, inset 0 0 6px 8px #423963, 0 20px 30px -10px rgba(0,0,0,0.4);
@@ -246,9 +276,9 @@ $ts-speed: .7s;
   opacity: 0;
 }
 .switch input:checked ~ label .bulb {
-  left: 120px;
+  left: 142px;
   background-color: #a7694a;
-  box-shadow: inset 0 0 1px 3px #a56758, inset 0 0 6px 8px #6b454f, 0 22px 0px -10px rgba(0,0,0,.4), 0 0 10px 20px rgba(253,184,67,.1);
+  box-shadow: inset 0 0 1px 3px #a56758, inset 0 0 6px 8px #6b454f, 0 14px 0px -11px rgba(0,0,0,.4), 0 0 10px 20px rgba(253,184,67,.1);
 }
 .switch input:checked ~ label .bulb > .bulb-center {
   background-color: #feed6b;

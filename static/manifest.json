@@ -1,6 +1,6 @@
 {
   "name": "Type Genius",
-  "description": "A GPT-powered Chrome extension that autocompletes your whole world",
+  "description": "An AI-powered Chrome extension that autocompletes your whole world",
   "version": "0.1.0",
   "manifest_version": 3,
   "background": {
@@ -19,7 +19,7 @@
     "open_in_tab": true
   },
   "action": {
-    "default_title": "A GPT-powered Chrome extension that autocompletes your whole world",
+    "default_title": "A AI-powered Chrome extension that autocompletes your whole world",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "/icons/16x.png",
