@@ -6,4 +6,5 @@ export interface Options {
   n: number;
   stream: boolean;
   stop: string;
+  prompt_template: string;
 }

@@ -42,6 +42,7 @@ function saveOptions(): void {
       top_p: parseFloat((form.elements.namedItem('top_p') as HTMLInputElement).value),
       n: parseInt((form.elements.namedItem('n') as HTMLInputElement).value, 10),
       stream: (form.elements.namedItem('stream') as HTMLInputElement).checked,
+      prompt_template: (form.elements.namedItem('promptTemplate') as HTMLInputElement).value,
       stop: stopValue,
     };
 

@@ -41,6 +41,22 @@
         <option value="babbage">babbage</option>
         <option value="ada">ada</option>
       </select>
+
+      <label for="promptTemplate">Prompt Template</label>
+      <p>Customize your GPT prompt, use the <code>${VARIABLE}</code> format where VARIABLE can be one of:</p>
+      <dl>
+        <dt>input_name</dt>
+        <dd>The name of the currently active input field.</dd>
+        <dt>input_text</dt>
+        <dd>The text currently inside the currently active input field.</dd>
+        <dt>model_name</dt>
+        <dd>The name of the model being used for auto-complete</dd>
+        <dt>stop</dt>
+        <dd>The stop sequence being used (<a href="https://help.openai.com/en/articles/5072263-how-do-i-use-stop-sequences" target="_blank">more information</a>)</dd>
+      </dl>
+      <div class="webflow-style-input">
+        <textarea class="" type="text" id="promptTemplate" name="promptTemplate" placeholder='Complete the field "${input_name}"\nField value: "${input_text}'></textarea>
+      </div>
       
       <label for="max_tokens">Max Tokens</label>
       <div class="webflow-style-input">
