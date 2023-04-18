@@ -14,15 +14,15 @@ Type Genius is powered by GPT, a state-of-the-art natural language processing AI
 
 ## Features
 
-* 🚀**In-browser AI Autocomplete** : Enhance your typing experience across multiple websites, including search engines, email providers, and social media platforms.
-* 🎯**Context-aware Suggestions** : Receive tailored suggestions based on the context of your writing.
-* 💡**Instant Ideas** : Need help brainstorming? Type Genius provides ideas for topics, blog posts, and more.
-* 🔒**Privacy-first** : Your data stays on your device, ensuring your privacy and security.
-* ⚙️**Customizable** : Adjust settings to match your preferences and usage style.
+* 🚀 **In-browser AI Autocomplete** : Enhance your typing experience across multiple websites, including search engines, email providers, and social media platforms.
+* 🎯 **Context-aware Suggestions** : Receive tailored suggestions based on the context of your writing.
+* 💡 **Instant Ideas** : Need help brainstorming? Type Genius provides ideas for topics, blog posts, and more.
+* 🔒 **Privacy-first** : Your data stays on your device, ensuring your privacy and security.
+* ⚙️ **Customizable** : Adjust settings to match your preferences and usage style.
 
 ## Installation
 
-1. Visit the [Chrome Web Store](https://chrome.google.com/webstore/detail/type-genius/your-extension-id).
+1. Visit the [Chrome Web Store](https://chrome.google.com/webstore/detail/type-genius/ejokcdmbiifiagicppiakpneifaofghh).
 2. Click on the**Add to Chrome** button.
 3. In the pop-up window, click**Add extension** to confirm the installation.
 4. Type Genius will now appear as an icon in your browser's toolbar.
