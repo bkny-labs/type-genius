@@ -1,7 +1,7 @@
 {
   "name": "Type Genius",
   "description": "An AI-powered Chrome extension that autocompletes your whole world",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "manifest_version": 3,
   "background": {
     "service_worker": "serviceWorker.js"

@@ -2,7 +2,7 @@
   <img width="420px" src="static/images/logo.png">
 </p>
 
-# Type Genius - A AI-powered Chrome Extension
+# TypeGenius: AI-powered Completions for Chrome
 
 [![OpenAI](https://img.shields.io/badge/OpenAI-%2300A0E4?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/) [![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![Node.js](https://img.shields.io/badge/Node.js-%23339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/) [![npm](https://img.shields.io/badge/npm-%23CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/) [![Netlify](https://img.shields.io/badge/Netlify-%2300C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
 
@@ -31,6 +31,7 @@ Type Genius is powered by GPT, a state-of-the-art natural language processing AI
 
 1. Click on the Type Genius icon in your browser's toolbar.
 2. Activate the extension by toggling the switch on the pop-up menu.
+  - If you haven't already, add your OpenAI API key to the settings page by clicking the gear icon in the top left corner of the popup.
 3. Start typing in any text field across the web and watch as Type Genius provides real-time suggestions.
 4. To cycle through suggestions, press the `Up` arrow key or `Down` arrow key .
 5. To accept a suggestion, press the`Tab` key or click on the suggestion with your mouse.
