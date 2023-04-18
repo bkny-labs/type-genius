@@ -20,9 +20,7 @@
     <div class="logo">
       <a href="https://typegenius.app" target="_blank" rel="noreferrer"><img width="300px" src="/images/logo.png" alt="Type Genius Logo"></a>
     </div>
-    <p>Configure your Type Genius settings here. For more info, visit the <a href="https://platform.openai.com/docs/api-reference/completions" target="_blank">OpenAI Completions API Docs &#x2197;</a></p>
-    <p>To test your application, visit the <a target="_blank" href="https://main--tiny-entremet-e2b781.netlify.app/test">Type Genius Playground</a></p>
-    
+
     <form id="optionsForm">
       <label for="apiKey">OpenAI API Key</label>
       <div class="webflow-style-input">
@@ -41,36 +39,47 @@
         <option value="babbage">babbage</option>
         <option value="ada">ada</option>
       </select>
-      
-      <label for="max_tokens">Max Tokens</label>
-      <div class="webflow-style-input">
-        <input type="number" placeholder="Max tokens" id="max_tokens" name="max_tokens" value="10" required>
-      </div>
 
-        <label for="temperature">Temperature</label>
-      <div class="webflow-style-input">
-        <input type="number" placeholder="Temperature" id="temperature" name="temperature" step="0.1" value="0.5" required>
-      </div>
-      <label for="top_p">Top_P</label>
-      <div class="webflow-style-input">
-        <input type="number" placeholder="Top P" id="top_p" name="top_p" step="0.1" value="0.5" required>
-      </div>
-      <label for="n">N</label>
-      <div class="webflow-style-input">
-        <input type="number" placeholder="N" id="n" name="n" value="1" required>
-      </div>
-      <div class="float-right">
-        <input type="checkbox" placeholder="Stream" id="stream" name="stream">
-        <label class="label-inline" for="stream">Stream?</label>
-      </div>
+      <div id="contents">
+        <div class="alert alert--warning" id="warningMsg" style="display: block;">
+          <em>Not sure?</em> Leave the defaults below! These are our favorite settings. For more info, visit the <a href="https://platform.openai.com/docs/api-reference/completions" target="_blank">OpenAI Completions API Docs &#x2197;</a>
+        </div>
+        <label for="max_tokens">Max Tokens</label>
+        <div class="webflow-style-input">
+          <input type="number" placeholder="Max tokens" id="max_tokens" name="max_tokens" value="10" required>
+        </div>
 
-      <label for="stop">Stop</label>
-      <div class="webflow-style-input">
-        <input type="text" placeholder="Stop" id="stop" name="stop" value='"' required>
-      </div>
+          <label for="temperature">Temperature</label>
+        <div class="webflow-style-input">
+          <input type="number" placeholder="Temperature" id="temperature" name="temperature" step="0.1" value="0.5" required>
+        </div>
+        <label for="top_p">Top_P</label>
+        <div class="webflow-style-input">
+          <input type="number" placeholder="Top P" id="top_p" name="top_p" step="0.1" value="0.5" required>
+        </div>
+        <label for="n">N</label>
+        <div class="webflow-style-input">
+          <input type="number" placeholder="N" id="n" name="n" value="1" required>
+        </div>
+        <div class="float-right">
+          <input type="checkbox" placeholder="Stream" id="stream" name="stream">
+          <label class="label-inline" for="stream">Stream?</label>
+        </div>
+
+        <label for="stop">Stop</label>
+        <div class="webflow-style-input">
+          <input type="text" placeholder="Stop" id="stop" name="stop" value='"' required>
+        </div>
+    </div>
+    <p id="btn4"> 
+      <a href="#contents">Show More</a>
+      <a href="#revert">Show Less</a> 
+    </p>
 
       <button class="save-button" id="saveButton" type="button">Save</button>
     </form>
+
+    <p>To test your application, visit the <a target="_blank" href="https://main--tiny-entremet-e2b781.netlify.app/test">TG Playground</a></p>
   </div>
   <script src="options.js"></script>
 </body>

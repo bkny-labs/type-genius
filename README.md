@@ -30,12 +30,12 @@ Type Genius is powered by GPT, a state-of-the-art natural language processing AI
 ## Usage
 
 1. Click on the Type Genius icon in your browser's toolbar.
-2. Activate the extension by toggling the switch on the pop-up menu.
-  - If you haven't already, add your OpenAI API key to the settings page by clicking the gear icon in the top left corner of the popup.
-3. Start typing in any text field across the web and watch as Type Genius provides real-time suggestions.
-4. To cycle through suggestions, press the `Up` arrow key or `Down` arrow key .
-5. To accept a suggestion, press the`Tab` key or click on the suggestion with your mouse.
-6. To adjust settings, open the Type Genius pop-up menu and click on the gear icon.
+2. If you haven't already, click the gear icon and add your OpenAI API Key to the settings and click Save
+3. Activate the extension by toggling the switch on the pop-up menu.
+4. Start typing in any text field across the web and watch as Type Genius provides real-time suggestions.
+5. To cycle through suggestions, press the `Up` arrow key or `Down` arrow key .
+6. To accept a suggestion, press the`Tab` key or click on the suggestion with your mouse.
+7. To adjust settings, open the Type Genius pop-up menu and click on the gear icon.
 
 ## FAQ
 

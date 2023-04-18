@@ -221,3 +221,26 @@ select {
   font-family: 'Consolas', monospace;
 }
 
+#contents {
+  display: none;
+}
+
+#contents:target {
+  display: block;
+}
+
+#btn4 a[href="#revert"] {
+  display: none;
+}
+
+#contents:target {
+  display: block;
+}
+
+#contents:target~#btn4 a[href="#contents"] {
+  display: none;
+}
+
+#contents:target~#btn4 a[href="#revert"] {
+  display: block;
+}
