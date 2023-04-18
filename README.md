@@ -32,8 +32,9 @@ Type Genius is powered by GPT, a state-of-the-art natural language processing AI
 1. Click on the Type Genius icon in your browser's toolbar.
 2. Activate the extension by toggling the switch on the pop-up menu.
 3. Start typing in any text field across the web and watch as Type Genius provides real-time suggestions.
-4. To accept a suggestion, press the`Tab` key or click on the suggestion with your mouse.
-5. To adjust settings, open the Type Genius pop-up menu and click on the gear icon.
+4. To cycle through suggestions, press the `Up` arrow key or `Down` arrow key .
+5. To accept a suggestion, press the`Tab` key or click on the suggestion with your mouse.
+6. To adjust settings, open the Type Genius pop-up menu and click on the gear icon.
 
 ## FAQ
 
