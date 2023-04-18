@@ -41,6 +41,9 @@
       </select>
 
       <div id="contents">
+        <div class="alert alert--warning" id="warningMsg" style="display: block;">
+          <em>Not sure?</em> Leave the defaults below! These are our favorite settings. For more info, visit the <a href="https://platform.openai.com/docs/api-reference/completions" target="_blank">OpenAI Completions API Docs &#x2197;</a>
+        </div>
         <label for="promptTemplate">Prompt Template</label>
         <p>Customize your GPT prompt, use the <code>${VARIABLE}</code> format where VARIABLE can be one of:</p>
         <dl>
@@ -54,10 +57,7 @@
           <dd>The stop sequence being used (<a href="https://help.openai.com/en/articles/5072263-how-do-i-use-stop-sequences" target="_blank">more information</a>)</dd>
         </dl>
         <div class="webflow-style-input">
-          <textarea class="" type="text" id="promptTemplate" name="promptTemplate" placeholder='Complete the field "${input_name}"\nField value: "${input_text}'></textarea>
-        </div>
-        <div class="alert alert--warning" id="warningMsg" style="display: block;">
-          <em>Not sure?</em> Leave the defaults below! These are our favorite settings. For more info, visit the <a href="https://platform.openai.com/docs/api-reference/completions" target="_blank">OpenAI Completions API Docs &#x2197;</a>
+          <textarea class="" type="text" id="promptTemplate" name="promptTemplate">Complete the field "${input_name}"\nField value: "${input_text}</textarea>
         </div>
         <label for="max_tokens">Max Tokens</label>
         <div class="webflow-style-input">

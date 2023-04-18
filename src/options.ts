@@ -14,6 +14,7 @@ const loadStorage = () => getStorageData().then(data => {
   (form.elements.namedItem('top_p') as HTMLInputElement).value = options.top_p + '';
   (form.elements.namedItem('n') as HTMLInputElement).value = options.n + '';
   (form.elements.namedItem('stream') as HTMLInputElement).checked = options.stream;
+  (form.elements.namedItem('promptTemplate') as HTMLInputElement).value = options.prompt_template;
 
   const stopValue = options.stop.replace(/\n/g, "\\n");
   (form.elements.namedItem('stop') as HTMLInputElement).value = stopValue;
