@@ -5,9 +5,7 @@ import { getStorageData } from './utils/storage';
 
 const typeGenius = new TypeGenius();
 
-
 const loadStorage = () => getStorageData().then(data => {
-  console.log('refresh', data);
   typeGenius.setEnabled(data.typeGeniusEnabled);
   typeGenius.setOptions(data.options);
   if (data.apiKey) {
@@ -15,5 +13,8 @@ const loadStorage = () => getStorageData().then(data => {
   }
 });
 
-chrome.runtime.onMessage.addListener(() => loadStorage());
+chrome.runtime.onMessage.addListener(() => {
+  loadStorage();
+  typeGenius.hideHint();
+});
 loadStorage();

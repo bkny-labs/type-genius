@@ -3,7 +3,6 @@ import { debounce } from 'lodash';
 import { blacklistFields } from '../models/constants';
 import { Options } from '../models/options';
 import { TextareaHint } from './textarea-hint';
-import { InputHint } from './input-hint';
 
 export class TypeGenius {
   private apiKey: string = undefined;
@@ -14,7 +13,6 @@ export class TypeGenius {
   private handleKeyDown: (event: KeyboardEvent) => void;
   
   private options: Options;
-  private inputHint: InputHint;
   private textAreaHint: TextareaHint;
 
   private defaultTemplate = 'Complete the field "${input_name}"\nField value: "${input_text}';
@@ -27,7 +25,7 @@ export class TypeGenius {
       // console.log('handleKeyUp', event);
       if (event.key !== 'Escape' && event.key !== 'Tab') {
         // Check if the activeElement is an input or textarea element
-        if ((activeElement.tagName === 'INPUT' && activeElement.type === 'text') || activeElement.tagName === 'TEXTAREA') {
+        if (activeElement.tagName === 'TEXTAREA') {
           // Check blacklist
           const isBlacklisted = blacklistFields.some((pattern) => {
             if (pattern instanceof String) {
@@ -79,16 +77,12 @@ export class TypeGenius {
   }
 
   hideHint() {
-    this.inputHint.hide();
     this.textAreaHint.hide();
   }
 
   init() {
     this.textAreaHint = new TextareaHint();
     this.textAreaHint.addElements();
-
-    this.inputHint = new InputHint();
-    this.inputHint.addElements();
     
     this.addListeners();
   }
@@ -102,7 +96,7 @@ export class TypeGenius {
   }
 
   renderPromptTemplate(field: string, payload: string, prompt_template = this.defaultTemplate) {
-    console.log("template: ", prompt_template);
+    // console.log("template: ", prompt_template);
     let template = prompt_template;
     const ctx: any = {
       'input_name': field,
@@ -114,14 +108,14 @@ export class TypeGenius {
       const value = ctx[key];
       template = template.replaceAll('${' + key + '}', value);
     }
-    console.log('rendered:', template);
+    // console.log('rendered:', template);
     return template.replace('${field}', field).replace('${payload}', payload);
   }
   
   loadApiRequest(field: string, payload: string) {
     // const prompt = `Complete the field "${field}"\nField value: "${payload}`;
     const { prompt_template, ...opts } = this.options;
-    console.log('opts', opts);
+    // console.log('opts', opts);
     const prompt = this.renderPromptTemplate(field, payload, prompt_template);
     const options = {
       "model": "text-davinci-002",
@@ -136,7 +130,7 @@ export class TypeGenius {
       ...opts
     };
     const payloadWhitespace = /\s/.test(payload[payload.length - 1]);
-    console.log('options wtf', options);
+
     return fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -147,7 +141,7 @@ export class TypeGenius {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      // console.log(data);
       const response = data.choices[0].text;
       const whitespace = payloadWhitespace === false && /\s/.test(response[0]) ? ' ':'';
       this.currentHint = whitespace + response.trim();
@@ -182,10 +176,6 @@ export class TypeGenius {
         this.textAreaHint.setInput(activeElement);
         this.textAreaHint.setHint(this.currentHint);
         this.textAreaHint.show();
-      } else {
-        this.inputHint.setInput(activeElement);
-        this.inputHint.setHint(this.currentHint);
-        this.inputHint.show();
       }
     }
   }
