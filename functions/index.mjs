@@ -20,7 +20,7 @@ export const handler = async(event) => {
   const field = body.field;
   const payload = body.payload;
 
-  const prompt = `You're a powerful auto-completion AI in the process of filling in a form field labelled '${field}' on a website; you write: ${payload} `;
+  const prompt = `You're a powerful auto-completion AI in the process of filling in a form field labeled '${field}' on a website; you write: ${payload} `;
 
   if (field === undefined || prompt == undefined) {
     return createResponse(400, 'Payload missing');
