@@ -41,8 +41,33 @@
       </select>
 
       <div id="contents">
+        <div class="alert alert--info" id="infoMsg" style="display: block;">
+          <p>To create a custom GPT prompt, include ${VARIABLES} in your prompt for TypeGenius to relay data to OpenAI.</p>
+        <p>ex: You're a powerful auto-completion AI in the process of filling in a form field labeled '${field}' on a website; you write: ${payload} </p>
+        </div>
+        <div class="alert alert--instructions" id="warningMsg" style="display: block;">
+          <h4>Legend</h4>
+          <dl>
+            <dt><code>${input_name}</code></dt>
+            <dd>The name of the currently active input field.</dd>
+            <dt><code>${input_text}</code></dt>
+            <dd>The text currently inside the currently active input field.</dd>
+            <dt><code>${model_name}</code></dt>
+            <dd>The name of the model being used for auto-complete</dd>
+            <dt><code>${payload}</code></dt>
+            <dd>The text you've typed into the current field.</dd>
+            <dt><code>${stop}</code></dt>
+            <dd>The stop sequence being used (<a href="https://help.openai.com/en/articles/5072263-how-do-i-use-stop-sequences" target="_blank">more information</a>)</dd>
+          </dl>
+        </div>
+        
         <div class="alert alert--warning" id="warningMsg" style="display: block;">
-          <em>Not sure?</em> Leave the defaults below! These are our favorite settings. For more info, visit the <a href="https://platform.openai.com/docs/api-reference/completions" target="_blank">OpenAI Completions API Docs &#x2197;</a>
+          <em>Not sure?</em> Leave the defaults below! These are our favorite prompt settings. 
+          For more info, visit the <a href="https://platform.openai.com/docs/api-reference/completions" target="_blank">OpenAI Completions API Docs &#x2197;</a>
+        </div>
+        <label for="promptTemplate">Prompt Template</label>
+        <div class="webflow-style-input">
+          <textarea class="" type="text" id="promptTemplate" name="promptTemplate">Complete the field "${input_name}"\nField value: "${input_text}</textarea>
         </div>
         <label for="max_tokens">Max Tokens</label>
         <div class="webflow-style-input">

@@ -25,6 +25,10 @@ body {
   color: white;
   margin-top: 15px;
   display: none;
+  font-size: 12px;
+  p {
+    font-size: 12px;
+  }
   &--success {
     background-color: #4caf50; /* Green */
   }
@@ -35,6 +39,14 @@ body {
   
   &--info {
     background-color: #2196f3; /* Blue */
+  }
+
+  &--instructions {
+    background-color: #b9c9d6; /* Gray */
+    color: black;
+    a {
+      color: black;
+    }
   }
   
   &--error {

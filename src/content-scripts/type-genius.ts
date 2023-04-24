@@ -17,6 +17,8 @@ export class TypeGenius {
   private inputHint: InputHint;
   private textAreaHint: TextareaHint;
 
+  private defaultTemplate = 'Complete the field "${input_name}"\nField value: "${input_text}';
+
   addListeners() {
     this.debouncedRequestLoader = debounce(this.loadRequest.bind(this), 1000);
     // Define the event listener code as a separate function
@@ -28,7 +30,7 @@ export class TypeGenius {
         if ((activeElement.tagName === 'INPUT' && activeElement.type === 'text') || activeElement.tagName === 'TEXTAREA') {
           // Check blacklist
           const isBlacklisted = blacklistFields.some((pattern) => {
-            if (typeof pattern === 'string') {
+            if (pattern instanceof String) {
               return pattern.toLowerCase() === activeElement.name.toLowerCase();
             } else if (pattern instanceof RegExp) {
               return pattern.test(activeElement.name);
@@ -98,9 +100,29 @@ export class TypeGenius {
       }
     }
   }
+
+  renderPromptTemplate(field: string, payload: string, prompt_template = this.defaultTemplate) {
+    console.log("template: ", prompt_template);
+    let template = prompt_template;
+    const ctx: any = {
+      'input_name': field,
+      'input_text': payload,
+      'model_name': this.options.model,
+      'stop': this.options.stop,
+    }
+    for (const key in ctx) {
+      const value = ctx[key];
+      template = template.replaceAll('${' + key + '}', value);
+    }
+    console.log('rendered:', template);
+    return template.replace('${field}', field).replace('${payload}', payload);
+  }
   
   loadApiRequest(field: string, payload: string) {
-    const prompt = `Complete the field "${field}"\nField value: "${payload}`;
+    // const prompt = `Complete the field "${field}"\nField value: "${payload}`;
+    const { prompt_template, ...opts } = this.options;
+    console.log('opts', opts);
+    const prompt = this.renderPromptTemplate(field, payload, prompt_template);
     const options = {
       "model": "text-davinci-002",
       "max_tokens": 10,
@@ -111,10 +133,10 @@ export class TypeGenius {
       "stop": '"',
       "prompt": prompt,
       // "suffix": '"',
-      ...this.options
+      ...opts
     };
     const payloadWhitespace = /\s/.test(payload[payload.length - 1]);
-    console.log('options', options);
+    console.log('options wtf', options);
     return fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
