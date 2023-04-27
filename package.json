@@ -1,6 +1,6 @@
 {
   "name": "type-genius",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Type Genius is a groundbreaking Chrome extension that elevates your browsing experience by providing GPT-powered suggestions to complete your text in textareas across web pages.",
   "scripts": {
     "start": "webpack --watch --config webpack.dev.js",
